@@ -1,5 +1,5 @@
 #include <limits.h>
-#include "header.h"
+#include "../header.h"
 
 
 void test_moulitest_00(void)
@@ -189,7 +189,6 @@ void test_moulitest_43(void)
 	ASSERT_PRINTF("%hhu, %hhu", 0, UCHAR_MAX + 42);
 	ASSERT_PRINTF("%hhx, %hhx", 0, UCHAR_MAX + 42);
 	ASSERT_PRINTF("%hhX, %hhX", 0, UCHAR_MAX + 42);
-	ASSERT_PRINTF("%hhD, %hhD", 0, USHRT_MAX);
 }
 
 void test_moulitest_45(void)

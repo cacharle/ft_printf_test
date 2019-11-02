@@ -9,13 +9,19 @@ PYTHON = python3
 RM = rm -f
 MAKE = make -j4
 
-SRC = main.c helper.c pft_tests.c moulitest_tests.c
+SRC = main.c helper.c tests/pft_tests.c tests/moulitest_tests.c
 OBJ = $(SRC:.c=.o)
 
 run: run_pretty
 
 run_pretty: all
 	./$(NAME) | $(PYTHON) prettier.py
+
+run_pretty_verbose:
+	./$(NAME) | $(PYTHON) prettier.py --verbose
+
+run_pretty_quiet:
+	./$(NAME) | $(PYTHON) prettier.py --quiet
 
 run_raw: all
 	./$(NAME)

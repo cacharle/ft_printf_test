@@ -3,3 +3,4 @@ ft_printf_test
 *.o
 *.ghc
 *.dSYM
+result.log

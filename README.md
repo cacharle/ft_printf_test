@@ -16,3 +16,6 @@ or modify the `FT_PRINTF_PATH` variable in the Makefile
 
 - `> make run`: run the tests in a pretty format
 - `> make run_raw`: run the tests in a ugly but parsable format
+- `> make run_prettier_verbose`: to show a more verbose output
+- `> make run_prettier_quiet`: to show a more quiet output
+- `> python3 prettier -h`: show prettier options

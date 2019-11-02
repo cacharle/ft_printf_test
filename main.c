@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include "header.h"
+#include "tests/tests.h"
 
 int main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
 	test_pft_nacked();
 	test_pft_percent();
 	test_pft_string();

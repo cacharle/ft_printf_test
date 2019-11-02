@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include "header.h"
 
-/* #define BUF_SIZE (1 << 10) */
+#define BUF_SIZE (1 << 10)
 
 int		pipefd[2];
 int		saved_stdout = -1;
@@ -34,6 +34,7 @@ void test_tear_down(void)
 		close(pipefd[0]);
 		close(pipefd[1]);
 	}
+	fflush(stdout);
 }
 
 #include <fcntl.h>
