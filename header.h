@@ -31,6 +31,17 @@ void test_setup(void);
 void test_tear_down(void);
 char *read_stdout_buf(void);
 
+void test_pft_nacked(void);
+void test_pft_percent(void);
+void test_pft_string(void);
+void test_pft_int_i(void);
+void test_pft_int_d(void);
+void test_ptf_uint(void);
+void test_ptf_hex_low(void);
+void test_ptf_hex_up(void);
+void test_pft_ptr(void);
+void test_pft_char(void);
+
 # define TEST_SEGFAULT(x) do { \
 	if ((pid = fork()) < 0) \
 	exit(EXIT_FAILURE); \

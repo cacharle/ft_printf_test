@@ -23,8 +23,8 @@ def parse():
             logs["ko"] += 1
             logs["ko_info"].append({
                 "msg": line[line.find("[KO]") + 5:],
-                "expected": sys.stdin.readline(),
-                "actual": sys.stdin.readline()
+                "expected": sys.stdin.readline().rstrip(),
+                "actual": sys.stdin.readline().rstrip()
             })
             print(red("!"), end="")
         sys.stdout.flush()
@@ -34,10 +34,19 @@ def parse():
 # def write_logs(logs):
 
 def print_logs(logs):
-    print(f"Total     {green('OK:', logs['ok'])}  {red('KO:', logs['ko'])}")
+    total_str = f"\n\nTotal     {green('OK: ', logs['ok'])}  {red('KO: ', logs['ko'])}"
+    print(total_str)
+    print("=" * (len(total_str) - len(green("")) * 2 - len(red("")) * 2 - 2))
+
+    for ko in logs["ko_info"]:
+        print(ko["msg"])
+        print("   ", ko["expected"])
+        print("   ", ko["actual"])
+        print()
+
 
 if __name__ == "__main__":
-    logs = parse()
     print()
+    logs = parse()
     # write_logs(logs)
     print_logs(logs)
