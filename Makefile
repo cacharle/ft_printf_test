@@ -1,7 +1,7 @@
 FT_PRINTF_PATH = ../ft_printf
 
 CC = gcc
-CCFLAGS = -Wall -Wextra -Wno-format -g
+CCFLAGS = -Wall -Wextra -Wno-format
 LDFLAGS = -L$(FT_PRINTF_PATH) -lftprintf
 
 NAME = ft_printf_test
@@ -12,16 +12,17 @@ MAKE = make -j4
 SRC = main.c helper.c tests/pft_tests.c tests/moulitest_tests.c
 OBJ = $(SRC:.c=.o)
 
-run: run_pretty
-
-run_pretty: all
+run: all
 	./$(NAME) | $(PYTHON) prettier.py
 
-run_pretty_verbose:
+run_verbose:
 	./$(NAME) | $(PYTHON) prettier.py --verbose
 
-run_pretty_quiet:
+run_quiet:
 	./$(NAME) | $(PYTHON) prettier.py --quiet
+
+run_no_clear:
+	./$(NAME) | $(PYTHON) prettier.py --no-clear
 
 run_raw: all
 	./$(NAME)
@@ -41,6 +42,7 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+	$(MAKE) -C $(FT_PRINTF_PATH) re
 
 ft_printf_all:
 	$(MAKE) -C $(FT_PRINTF_PATH) all

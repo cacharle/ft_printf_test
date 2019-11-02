@@ -1,3 +1,4 @@
+import os
 import sys
 import argparse
 
@@ -18,6 +19,7 @@ def parse_args():
                         help="decrease vebosity", action="store_true")
     parser.add_argument("-l", "--no-log",
                         help="disable result log", action="store_true")
+    parser.add_argument("-c", "--no-clear", help="disable terminal clear before output")
     parser.add_argument("-f", "--output-file", help="output file name")
     return vars(parser.parse_args(sys.argv[1:]))
 
@@ -51,9 +53,14 @@ def write_logs(logs, options):
         filename = options["output_file"]
     with open(filename, "w") as log_file:
         for ko in logs["ko_info"]:
-            log_file.write("- " + ko["msg"] + "\n")
-            log_file.write("   " + ko["expected"] + "\n")
-            log_file.write("   " + ko["actual"] + "\n\n")
+            try:
+                log_file.write("- " + ko["msg"]+ "\n")
+                log_file.write("   " + ko["expected"] + "\n")
+                log_file.write("   " + ko["actual"] + "\n")
+            except UnicodeEncodeError:
+                log_file.write("Can't write detail\n")
+            finally:
+                log_file.write("\n")
 
 
 def print_logs(logs, options):
@@ -75,6 +82,8 @@ def print_logs(logs, options):
 if __name__ == "__main__":
     print()
     options = parse_args()
+    if not options["no_clear"]:
+        os.system("clear")
     logs = parse()
     print_logs(logs, options)
     if not options["no_log"]:
