@@ -9,7 +9,7 @@ PYTHON = python3
 RM = rm -f
 MAKE = make -j4
 
-SRC = main.c helper.c pft_tests.c
+SRC = main.c helper.c pft_tests.c moulitest_tests.c
 OBJ = $(SRC:.c=.o)
 
 run: run_pretty
