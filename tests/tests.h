@@ -50,4 +50,6 @@ void test_moulitest_wildcard_03(void);
 
 void test_printf_tester(void);
 
+void test_printf_tests_test(void);
+
 #endif
