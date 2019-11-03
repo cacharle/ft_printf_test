@@ -12,16 +12,22 @@ char	buf[BUF_SIZE + 1] = {0};
 
 void test_setup(void)
 {
+	if (saved_stdout != -1)
+		test_tear_down();
 	saved_stdout = dup(STDOUT_FILENO);
 	if (pipe(pipefd) != 0)
 		exit(EXIT_FAILURE);
 	dup2(pipefd[1], STDOUT_FILENO);
+	long flags = fcntl(pipefd[0], F_GETFL);
+   	flags |= O_NONBLOCK;
+   	fcntl(pipefd[0], F_SETFL, flags);
 }
 
 void test_tear_down(void)
 {
 	dup2(saved_stdout, STDOUT_FILENO);
 	close(saved_stdout);
+	saved_stdout = -1;
 	close(pipefd[0]);
 	close(pipefd[1]);
 }
@@ -29,9 +35,6 @@ void test_tear_down(void)
 char *read_stdout_buf(void)
 {
 	fflush(stdout);
-	long flags = fcntl(pipefd[0], F_GETFL);
-   	flags |= O_NONBLOCK;
-   	fcntl(pipefd[0], F_SETFL, flags);
 	buf[0] = 0;
 	int ret = read(pipefd[0], buf, BUF_SIZE);
 	if (ret != -1)
@@ -41,28 +44,62 @@ char *read_stdout_buf(void)
 
 void print_buf_ko(char *msg)
 {
-	print_ko();
-	printf("ft_printf(%s): output error\n", msg);
-	printf("actual:   \"%s\"\n", user_buf);
-	printf("expected: \"%s\"\n", origin_buf);
+	printf("FAIL/OUTPUT<>ARGS:%s", msg);
+	fflush(stdout);
+	printf("<>EXPECTED:\"");
+	fflush(stdout);
+	ft_putstr_non_printable(origin_buf);
+	printf("\"<>ACTUAL:\"");
+	fflush(stdout);
+	ft_putstr_non_printable(user_buf);
+	printf("\"\n");
 	fflush(stdout);
 }
 
 void print_ret_ko(char *msg)
 {
-	print_ko();
-	printf("ft_printf(%s): return error\n", msg);
-	printf("actual:   %d\n", user_ret);
-	printf("expected: %d\n", origin_ret);
+	printf("FAIL/RETURN<>ARGS:%s<>EXPECTED:%d<>ACTUAL%d\n", msg, origin_ret, user_ret);
 	fflush(stdout);
 }
 
 void print_signaled_ko(char *msg)
 {
-	print_ko();
-	printf("ft_printf(\"%s\"): segfault)\n", msg);
+	printf("FAIL/SEGFAULT<>ARGS:%s<>EXPECTED:<>ACTUAL:\n", msg);
 	fflush(stdout);
 }
 
-inline void print_ok(void) {  printf("[OK]\n"); fflush(stdout); }
-inline void print_ko(void) {  printf("[KO] ");  fflush(stdout);}
+inline void print_ok(void) {  printf("OK\n"); fflush(stdout); }
+
+void ft_putstr_non_printable(char *str)
+{
+	unsigned char	tmp;
+	unsigned char	*cursor;
+	char			*hex_symbols;
+
+	hex_symbols = "0123456789abcdef";
+	cursor = (unsigned char*)str;
+	while (*cursor != '\0')
+	{
+		if (*cursor >= ' ' && *cursor <= '~')
+			write(1, cursor, 1);
+		else if (*cursor == '\n')
+			printf("\\n");
+		else if (*cursor == '\r')
+			printf("\\r");
+		else if (*cursor == '\t')
+			printf("\\t");
+		else if (*cursor == '\v')
+			printf("\\v");
+		else if (*cursor == '\0')
+			printf("\\0");
+		else
+		{
+			ft_putchar('\\');
+			tmp = *cursor / 16;
+			ft_putchar(hex_symbols[tmp]);
+			tmp = *cursor % 16;
+			ft_putchar(hex_symbols[tmp]);
+		}
+		cursor++;
+	}
+}

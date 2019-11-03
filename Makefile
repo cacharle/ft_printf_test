@@ -30,7 +30,7 @@ raw: all
 
 all: $(NAME)
 
-$(NAME): ft_printf_all clean $(OBJ)
+$(NAME): ft_printf_all $(OBJ)
 	$(CC) $(LDFLAGS) $(CCFLAGS) -o $@ $(OBJ)
 
 %.o: %.c

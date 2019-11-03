@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 import argparse
 
 
@@ -30,20 +31,32 @@ def parse():
         "ko": 0,
         "ko_info": []
     }
+    dot_line_len = 0
     for line in sys.stdin:
+        sys.stdout.flush()
+        if dot_line_len > 89:
+            print()
+            dot_line_len = 0
         line = line.strip()
-        if line.find("[OK]") != -1:
+        if line == "OK":
             logs["ok"] += 1
             print(green("."), end="")
-        elif line.find("[KO]") != -1:
-            logs["ko"] += 1
-            logs["ko_info"].append({
-                "msg": line[line.find("[KO]") + 5:],
-                "expected": sys.stdin.readline().rstrip(),
-                "actual": sys.stdin.readline().rstrip()
-            })
-            print(red("!"), end="")
-        sys.stdout.flush()
+            dot_line_len += 1
+            continue
+        m = re.search("^FAIL/(OUTPUT|RETURN|SEGFAULT)<>ARGS:(.*)<>EXPECTED:(.*)<>ACTUAL:(.*)$", line)
+        if m is None:
+            print(line)
+            print("PARSING ERROR")
+            continue
+        logs["ko"] += 1
+        logs["ko_info"].append({
+            "type": m.group(1),
+            "args": m.group(2),
+            "expected": m.group(3),
+            "actual": m.group(4),
+        })
+        print(red("!"), end="")
+        dot_line_len += 1
     return logs
 
 
@@ -54,7 +67,7 @@ def write_logs(logs, options):
     with open(filename, "w") as log_file:
         for ko in logs["ko_info"]:
             try:
-                log_file.write("- " + ko["msg"]+ "\n")
+                log_file.write(f"- [{ko['type']}] ft_printf({ko['args']})\n")
                 log_file.write("   " + ko["expected"] + "\n")
                 log_file.write("   " + ko["actual"] + "\n")
             except UnicodeEncodeError:
@@ -70,7 +83,7 @@ def print_logs(logs, options):
 
     infos = logs["ko_info"][:20] if options["quiet"] else logs["ko_info"]
     for ko in infos:
-        print("-", ko["msg"])
+        print(f"- [{red(ko['type'])}] ft_printf({ko['args']})")
         if options["verbose"]:
             print("   ", ko["expected"])
             print("   ", ko["actual"])

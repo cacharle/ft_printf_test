@@ -24,6 +24,7 @@ void print_ret_ko(char *msg);
 void print_signaled_ko(char *msg);
 void print_ok(void);
 void print_ko(void);
+void ft_putstr_non_printable(char *str);
 
 void test_setup(void);
 void test_tear_down(void);
