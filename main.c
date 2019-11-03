@@ -52,5 +52,7 @@ int main(int argc, char **argv)
 	test_moulitest_wildcard_01();
 	test_moulitest_wildcard_02();
 	test_moulitest_wildcard_03();
+
+	test_printf_tester();
 	return 0;
 }

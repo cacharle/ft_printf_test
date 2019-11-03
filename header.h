@@ -29,6 +29,7 @@ void test_setup(void);
 void test_tear_down(void);
 char *read_stdout_buf(void);
 
+
 # define TEST_SEGFAULT(x) do { \
 	if ((pid = fork()) < 0) \
 	exit(EXIT_FAILURE); \

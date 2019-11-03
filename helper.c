@@ -4,7 +4,7 @@
 #include <string.h>
 #include "header.h"
 
-#define BUF_SIZE (1 << 10)
+#define BUF_SIZE (1 << 16)
 
 int		pipefd[2];
 int		saved_stdout = -1;
@@ -42,7 +42,7 @@ char *read_stdout_buf(void)
 void print_buf_ko(char *msg)
 {
 	print_ko();
-	printf("ft_printf(%s) has wrong output\n", msg);
+	printf("ft_printf(%s): output error\n", msg);
 	printf("actual:   \"%s\"\n", user_buf);
 	printf("expected: \"%s\"\n", origin_buf);
 	fflush(stdout);
@@ -51,7 +51,7 @@ void print_buf_ko(char *msg)
 void print_ret_ko(char *msg)
 {
 	print_ko();
-	printf("ft_printf(%s) has wrong return value\n", msg);
+	printf("ft_printf(%s): return error\n", msg);
 	printf("actual:   %d\n", user_ret);
 	printf("expected: %d\n", origin_ret);
 	fflush(stdout);
@@ -60,7 +60,7 @@ void print_ret_ko(char *msg)
 void print_signaled_ko(char *msg)
 {
 	print_ko();
-	printf("ft_printf(\"%s\") has been signaled (segfault and friends)\n", msg);
+	printf("ft_printf(\"%s\"): segfault)\n", msg);
 	fflush(stdout);
 }
 
