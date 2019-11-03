@@ -19,3 +19,7 @@ or modify the `FT_PRINTF_PATH` variable in the Makefile
 - `> make quiet`: to show a more quiet output
 - `> make raw`: run the tests in a ugly but parsable format
 - `> python3 prettier -h`: show prettier options
+
+## Example
+
+![example_screenshot](./screenshot.png)
