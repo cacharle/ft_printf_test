@@ -68,14 +68,15 @@ def print_logs(logs, options):
     print(total_str)
     print("=" * (len(total_str) - len(green("")) * 2 - len(red("")) * 2 - 2))
 
-    if options["quiet"]:
-        return
-    for ko in logs["ko_info"]:
+    infos = logs["ko_info"][:20] if options["quiet"] else logs["ko_info"]
+    for ko in infos:
         print("-", ko["msg"])
         if options["verbose"]:
             print("   ", ko["expected"])
             print("   ", ko["actual"])
             print()
+    if options["quiet"] and logs["ko"] > 20:
+        print("...")
     print("\nSee result.log for more information\n")
 
 

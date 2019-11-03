@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
 #include "header.h"
 
 #define BUF_SIZE (1 << 10)
@@ -10,43 +12,30 @@ char	buf[BUF_SIZE + 1] = {0};
 
 void test_setup(void)
 {
-	if (saved_stdout != -1)
-	{
-		dup2(saved_stdout, STDOUT_FILENO);
-		close(saved_stdout);
-		saved_stdout = -1;
-		close(pipefd[0]);
-		close(pipefd[1]);
-	}
+	saved_stdout = dup(STDOUT_FILENO);
 	if (pipe(pipefd) != 0)
 		exit(EXIT_FAILURE);
-	saved_stdout = dup(STDOUT_FILENO);
 	dup2(pipefd[1], STDOUT_FILENO);
 }
 
 void test_tear_down(void)
 {
-	if (saved_stdout != -1)
-	{
-		dup2(saved_stdout, STDOUT_FILENO);
-		close(saved_stdout);
-		saved_stdout = -1;
-		close(pipefd[0]);
-		close(pipefd[1]);
-	}
-	fflush(stdout);
+	dup2(saved_stdout, STDOUT_FILENO);
+	close(saved_stdout);
+	close(pipefd[0]);
+	close(pipefd[1]);
 }
 
-#include <fcntl.h>
 char *read_stdout_buf(void)
 {
 	fflush(stdout);
 	long flags = fcntl(pipefd[0], F_GETFL);
    	flags |= O_NONBLOCK;
    	fcntl(pipefd[0], F_SETFL, flags);
+	buf[0] = 0;
 	int ret = read(pipefd[0], buf, BUF_SIZE);
-	buf[ret] = '\0';
-	fflush(stdout);
+	if (ret != -1)
+		buf[ret] = '\0';
 	return (buf);
 }
 

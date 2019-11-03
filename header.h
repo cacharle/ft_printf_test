@@ -63,7 +63,8 @@ char *read_stdout_buf(void);
 	else if (origin_signaled && user_signaled)     \
 		print_ok();          	                   \
 	else if (!origin_signaled && !user_signaled) { \
-		if (strcmp(origin_buf, user_buf) != 0)     \
+		if (memcmp(origin_buf, user_buf,           \
+			    strlen(origin_buf) + 1) != 0)      \
 			print_buf_ko(#__VA_ARGS__);            \
 		else if (origin_ret != user_ret)           \
 			print_ret_ko(#__VA_ARGS__);            \

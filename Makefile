@@ -15,16 +15,16 @@ OBJ = $(SRC:.c=.o)
 run: all
 	./$(NAME) | $(PYTHON) prettier.py
 
-run_verbose:
+verbose: all
 	./$(NAME) | $(PYTHON) prettier.py --verbose
 
-run_quiet:
+quiet: all
 	./$(NAME) | $(PYTHON) prettier.py --quiet
 
-run_no_clear:
+no_clear: all
 	./$(NAME) | $(PYTHON) prettier.py --no-clear
 
-run_raw: all
+raw: all
 	./$(NAME)
 
 all: $(NAME)
