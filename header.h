@@ -32,6 +32,7 @@ void test_setup(void);
 void test_tear_down(void);
 char *read_stdout_buf(void);
 
+// # define DEBUG
 
 # define TEST_SEGFAULT(x) do { \
 	if ((pid = fork()) < 0) \
@@ -65,7 +66,7 @@ char *read_stdout_buf(void);
 	if (!origin_signaled && user_signaled)         \
 		print_signaled_ko(#__VA_ARGS__);           \
 	else if (origin_signaled && user_signaled)     \
-		print_ok();          	                   \
+		print_ok(); \
 	else if (!origin_signaled && !user_signaled) { \
 		if (memcmp(origin_buf, user_buf,           \
 			    strlen(origin_buf) + 1) != 0)      \
@@ -73,7 +74,7 @@ char *read_stdout_buf(void);
 		else if (origin_ret != user_ret)           \
 			print_ret_ko(#__VA_ARGS__);            \
 		else                                       \
-			print_ok();                            \
+		print_ok(); \
 	} \
 	if (!origin_signaled) free(origin_buf);        \
 	if (!user_signaled) free(user_buf);            \

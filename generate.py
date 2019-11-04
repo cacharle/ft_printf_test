@@ -89,10 +89,19 @@ def generate_printf():
 
 if __name__ == "__main__":
     options = parse_args()
+    nb_tests = options["n"]
     with open("generated.c", "w") as file:
         file.write("#include \"header.h\"\n\nvoid generated_test(void)\n{\n\t")
 
-        for _ in range(options["n"]):
-            file.write(generate_printf() + "\n\t")
+        while nb_tests > 0:
+            with open("tmp.c", "w") as tmp:
+                tmp.write("#include <stdio.h>\n#include \"header.h\"\nvoid t (){")
+                tmp_assert = generate_printf()
+                tmp.write(tmp_assert + "}")
+            ret = os.system("gcc -c -Wall -Wextra -Werror tmp.c > /dev/null 2>&1")
+            print(ret)
+            if ret == 0:
+                file.write(tmp_assert + "\n\t")
+                nb_tests -= 1
 
         file.write("}\n")

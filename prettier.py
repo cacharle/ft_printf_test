@@ -21,11 +21,21 @@ def parse_args():
     parser.add_argument("-l", "--no-log",
                         help="disable result log", action="store_true")
     parser.add_argument("-c", "--no-clear", help="disable terminal clear before output")
+    parser.add_argument("-i", "--interactive", help="print fail as them come",
+                        action="store_true")
     parser.add_argument("-f", "--output-file", help="output file name")
     return vars(parser.parse_args(sys.argv[1:]))
 
 
-def parse():
+def print_log_ko(ko, options):
+    print(f"- [{red(ko['type'])}] ft_printf({ko['args']})")
+    if options["verbose"]:
+        print("   expected: ", ko["expected"])
+        print("   actual:   ", ko["actual"])
+        print()
+
+
+def parse(options):
     logs = {
         "ok": 0,
         "ko": 0,
@@ -50,7 +60,11 @@ def parse():
             "expected": m.group(3),
             "actual": m.group(4),
         })
-        print(red("!"), end="")
+        if options["interactive"]:
+            print()
+            print_log_ko(logs["ko_info"][-1], options)
+        else:
+            print(red("!"), end="")
     return logs
 
 
@@ -77,11 +91,7 @@ def print_logs(logs, options):
 
     infos = logs["ko_info"][:20] if options["quiet"] else logs["ko_info"]
     for ko in infos:
-        print(f"- [{red(ko['type'])}] ft_printf({ko['args']})")
-        if options["verbose"]:
-            print("   expected: ", ko["expected"])
-            print("   actual:   ", ko["actual"])
-            print()
+        print_log_ko(ko, options)
     if options["quiet"] and logs["ko"] > 20:
         print("...")
     print("\nSee result.log for more information\n")
@@ -92,7 +102,7 @@ if __name__ == "__main__":
     options = parse_args()
     if not options["no_clear"]:
         os.system("clear")
-    logs = parse()
+    logs = parse(options)
     print_logs(logs, options)
     if not options["no_log"]:
         write_logs(logs, options)

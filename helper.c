@@ -94,11 +94,11 @@ void ft_putstr_non_printable(char *str)
 			printf("\\0");
 		else
 		{
-			ft_putchar('\\');
+			putchar('\\');
 			tmp = *cursor / 16;
-			ft_putchar(hex_symbols[tmp]);
+			putchar(hex_symbols[tmp]);
 			tmp = *cursor % 16;
-			ft_putchar(hex_symbols[tmp]);
+			putchar(hex_symbols[tmp]);
 		}
 		cursor++;
 	}

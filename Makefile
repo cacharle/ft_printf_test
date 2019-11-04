@@ -1,7 +1,7 @@
 FT_PRINTF_PATH = ../ft_printf
 
 CC = gcc
-CCFLAGS = -Wall -Wextra -Wno-format
+CCFLAGS = -Wall -Wextra
 LDFLAGS = -L$(FT_PRINTF_PATH) -lftprintf
 
 NAME = ft_printf_test
@@ -25,12 +25,15 @@ quiet: all
 no_clear: all
 	./$(NAME) | $(PYTHON) prettier.py --no-clear
 
+interactive: all
+	./$(NAME) | $(PYTHON) prettier.py --interactive
+
 raw: all
 	./$(NAME)
 
 all: $(NAME)
 
-$(NAME): ft_printf_all $(OBJ)
+$(NAME): ft_printf_all $(OBJ) header.h tests/tests.h
 	$(CC) $(LDFLAGS) $(CCFLAGS) -o $@ $(OBJ)
 
 %.o: %.c
