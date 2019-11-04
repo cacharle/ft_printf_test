@@ -4,3 +4,4 @@ ft_printf_test
 *.ghc
 *.dSYM
 result.log
+generated.c

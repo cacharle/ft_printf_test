@@ -17,6 +17,8 @@ int user_ret;
 char *origin_buf;
 char *user_buf;
 
+void generated_test(void);
+
 int ft_printf(const char *format, ...);
 
 void print_buf_ko(char *msg);
