@@ -31,17 +31,12 @@ def parse():
         "ko": 0,
         "ko_info": []
     }
-    dot_line_len = 0
     for line in sys.stdin:
         sys.stdout.flush()
-        if dot_line_len > 89:
-            print()
-            dot_line_len = 0
         line = line.strip()
         if line == "OK":
             logs["ok"] += 1
             print(green("."), end="")
-            dot_line_len += 1
             continue
         m = re.search("^FAIL/(OUTPUT|RETURN|SEGFAULT)<>ARGS:(.*)<>EXPECTED:(.*)<>ACTUAL:(.*)$", line)
         if m is None:
@@ -56,7 +51,6 @@ def parse():
             "actual": m.group(4),
         })
         print(red("!"), end="")
-        dot_line_len += 1
     return logs
 
 
@@ -68,8 +62,8 @@ def write_logs(logs, options):
         for ko in logs["ko_info"]:
             try:
                 log_file.write(f"- [{ko['type']}] ft_printf({ko['args']})\n")
-                log_file.write("   " + ko["expected"] + "\n")
-                log_file.write("   " + ko["actual"] + "\n")
+                log_file.write("   expected: " + ko["expected"] + "\n")
+                log_file.write("   actual:   " + ko["actual"] + "\n")
             except UnicodeEncodeError:
                 log_file.write("Can't write detail\n")
             finally:
@@ -85,8 +79,8 @@ def print_logs(logs, options):
     for ko in infos:
         print(f"- [{red(ko['type'])}] ft_printf({ko['args']})")
         if options["verbose"]:
-            print("   ", ko["expected"])
-            print("   ", ko["actual"])
+            print("   expected: ", ko["expected"])
+            print("   actual:   ", ko["actual"])
             print()
     if options["quiet"] and logs["ko"] > 20:
         print("...")

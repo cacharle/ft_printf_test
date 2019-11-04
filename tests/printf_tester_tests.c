@@ -74,22 +74,22 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%015p\n", NULL);
 	ASSERT_PRINTF("%15p\n", NULL);
 	ASSERT_PRINTF("%-15p\n", NULL);
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%10d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%.5d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.1d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010.1d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.50d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%1.50d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%0100.50d]\n", -8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010d]\n", 8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%10d]\n", 8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%.5d]\n", 8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.1d]\n", 8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010.1d]\n", 8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.50d]\n", 8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%1.50d]\n", 8473));
-	ASSERT_PRINTF("ret = %d\n", printf("%%p::[%0100.50d]\n", 8473));
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%10d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%.5d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.1d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010.1d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.50d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%1.50d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%0100.50d]\n", -8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010d]\n", 8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%10d]\n", 8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%.5d]\n", 8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.1d]\n", 8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010.1d]\n", 8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%01.50d]\n", 8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%1.50d]\n", 8473)); */
+	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%0100.50d]\n", 8473)); */
 	ASSERT_PRINTF("%c", 'a');
 	ASSERT_PRINTF("%10c", 't');
 	ASSERT_PRINTF("%1c", 'y');
@@ -100,12 +100,12 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%.1s", "Test");
 	ASSERT_PRINTF("%10s", NULL);
 	ASSERT_PRINTF("%10s", "Ok");
-	ASSERT_PRINTF("%d\n", printf("Les bornes :  %d, %d\n", -2147483648, 2147483647));
-	ASSERT_PRINTF("%d\n", printf("Les bornes :  %u, %u\n", 0, 4294967295));
-	ASSERT_PRINTF("%d\n", printf("Les bornes :  %x, %x\n", 0, 4294967295));
-	ASSERT_PRINTF("%d\n", printf("1chiffre 1 %d chiffre 2 %d\n", 42, -42));
-	ASSERT_PRINTF("%d\n", printf("2chiffre 1 %   d chiffre 2 % d\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("4chiffre 1 %-12d chiffre 2 %-12d\n\n", 42, -42));
+	/* ASSERT_PRINTF("%d\n", printf("Les bornes :  %d, %d\n", -2147483648, 2147483647)); */
+	/* ASSERT_PRINTF("%d\n", printf("Les bornes :  %u, %u\n", 0, 4294967295)); */
+	/* ASSERT_PRINTF("%d\n", printf("Les bornes :  %x, %x\n", 0, 4294967295)); */
+	/* ASSERT_PRINTF("%d\n", printf("1chiffre 1 %d chiffre 2 %d\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n", printf("2chiffre 1 %   d chiffre 2 % d\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4chiffre 1 %-12d chiffre 2 %-12d\n\n", 42, -42)); */
 	ASSERT_PRINTF("%    i\n", -60);
 	ASSERT_PRINTF("%   i\n", -60);
 	ASSERT_PRINTF("%1p\n", &t);
@@ -123,40 +123,40 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("t12 %.0d\n", 0);
 	ASSERT_PRINTF("t13 %01d\n", -20);
 	ASSERT_PRINTF("t14 %10d\n", 1000);
-	ASSERT_PRINTF("%d\n\n", printf("5chiffre 1 %0d chiffre 2 %0d\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("6chiffre 1 %012d chiffre 2 %012d\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("8chiffre 1 %*d chiffre 2 %*d\n\n", 42, 6, 6, 6));
-	ASSERT_PRINTF("%d\n\n", printf("15chiffre 1 %.d chiffre 2 %.d\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("4caractere 1 %12c caractere 2 %12c\n\n", 'a', 'c'));
+	/* ASSERT_PRINTF("%d\n\n", printf("5chiffre 1 %0d chiffre 2 %0d\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("6chiffre 1 %012d chiffre 2 %012d\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("8chiffre 1 %*d chiffre 2 %*d\n\n", 42, 6, 6, 6)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("15chiffre 1 %.d chiffre 2 %.d\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4caractere 1 %12c caractere 2 %12c\n\n", 'a', 'c')); */
 	ASSERT_PRINTF("1caractere 1 %c caractere 2 %c\n\n", 'a', 'c');
 	ASSERT_PRINTF("3caractere 1 %   c caractere 2 % c\n\n", 'a', 'c');
-	ASSERT_PRINTF("%d\n\n", printf("1hexa-maj 1 %X hexa-maj 2 %X\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("3hexa-maj 1 %   X hexa-maj 2 % X\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("4hexa-maj 1 %12X hexa-maj 2 %int12X\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("4hexa-maj 1 %-12X hexa-maj 2 %-12X\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("5hexa-maj 1 %0X hexa-maj 2 %0X\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("6hexa-maj 1 %012X hexa-maj 2 %012X\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("8hexa-maj 1 %*X hexa-maj 2 %*X\n\n", 42, 6, 6, 6));
-	ASSERT_PRINTF("%d\n\n", printf("1pointeur 1 %p pointeur 2 %p\n\n", &c, &c));
-	ASSERT_PRINTF("%d\n\n", printf("3pointeur 1 %   p pointeur 2 % p\n\n", &c, &c));
-	ASSERT_PRINTF("%d\n\n", printf("4pointeur 1 %12p pointeur 2 %12p\n\n", &c, &c));
-	ASSERT_PRINTF("%d\n\n", printf("4pointeur 1 %-12p pointeur 2 %-12p\n\n", &c, &c));
-	ASSERT_PRINTF("%d\n\n", printf("5pointeur 1 %0p pointeur 2 %0p\n\n", &c, &c));
-	ASSERT_PRINTF("%d\n\n", printf("6pointeur 1 %012p pointeur 2 %012p\n\n", &c, &c));
-	ASSERT_PRINTF("%d\n\n", printf("1unsigned 1 %u unsigned 2 %u\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("3unsigned 1 %   u unsigned 2 % u\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("4unsigned 1 %12u unsigned 2 %12u\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("4unsigned 1 %-12u unsigned 2 %-12u\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("5unsigned 1 %0u unsigned 2 %0u\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("6unsigned 1 %012u unsigned 2 %012u\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("8unsigned 1 %*u unsigned 2 %*u\n\n", 42, 6, 6, 6));
-	ASSERT_PRINTF("%d\n\n", printf("15unsigned 1 %.u unsigned 2 %.u\n\n", 42, -42));
-	ASSERT_PRINTF("%d\n\n", printf("%s", 0));
-	ASSERT_PRINTF("%d\n\n", printf("%%\n")); 
-	ASSERT_PRINTF("%d\n\n", printf("%-.12u\n", -20000000));
-	ASSERT_PRINTF("%d\n\n", printf("%-.12i\n", -20000000));
-	ASSERT_PRINTF("%d\n", printf("truc"));
-	ASSERT_PRINTF("%d\n", printf("bonjour !\n", 42, -42));
+	/* ASSERT_PRINTF("%d\n\n", printf("1hexa-maj 1 %X hexa-maj 2 %X\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("3hexa-maj 1 %   X hexa-maj 2 % X\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4hexa-maj 1 %12X hexa-maj 2 %int12X\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4hexa-maj 1 %-12X hexa-maj 2 %-12X\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("5hexa-maj 1 %0X hexa-maj 2 %0X\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("6hexa-maj 1 %012X hexa-maj 2 %012X\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("8hexa-maj 1 %*X hexa-maj 2 %*X\n\n", 42, 6, 6, 6)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("1pointeur 1 %p pointeur 2 %p\n\n", &c, &c)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("3pointeur 1 %   p pointeur 2 % p\n\n", &c, &c)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4pointeur 1 %12p pointeur 2 %12p\n\n", &c, &c)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4pointeur 1 %-12p pointeur 2 %-12p\n\n", &c, &c)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("5pointeur 1 %0p pointeur 2 %0p\n\n", &c, &c)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("6pointeur 1 %012p pointeur 2 %012p\n\n", &c, &c)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("1unsigned 1 %u unsigned 2 %u\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("3unsigned 1 %   u unsigned 2 % u\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4unsigned 1 %12u unsigned 2 %12u\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("4unsigned 1 %-12u unsigned 2 %-12u\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("5unsigned 1 %0u unsigned 2 %0u\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("6unsigned 1 %012u unsigned 2 %012u\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("8unsigned 1 %*u unsigned 2 %*u\n\n", 42, 6, 6, 6)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("15unsigned 1 %.u unsigned 2 %.u\n\n", 42, -42)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("%s", 0)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("%%\n"));  */
+	/* ASSERT_PRINTF("%d\n\n", printf("%-.12u\n", -20000000)); */
+	/* ASSERT_PRINTF("%d\n\n", printf("%-.12i\n", -20000000)); */
+	/* ASSERT_PRINTF("%d\n", printf("truc")); */
+	/* ASSERT_PRINTF("%d\n", printf("bonjour !\n", 42, -42)); */
 	ASSERT_PRINTF("04 Test de chiffre sans h : %d, et %d\n", 432767, -432767);
 	/* ASSERT_PRINTF("%d\n", printf("03 This is a float : %f\n\n", 45.236)); */
 	/* ASSERT_PRINTF("%d\n", printf("02 This is a float : %.3f\n\n", 45.236)); */
@@ -216,7 +216,7 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%d\n", t);
 	ASSERT_PRINTF("%40s %n", "co", &t);
 	ASSERT_PRINTF("%d\n", t);
-	ASSERT_PRINTF("%050 d%n", 500, &t);
+	/* ASSERT_PRINTF("%050 d%n", 500, &t); */
 	ASSERT_PRINTF("%d\n", t);
 	/* ASSERT_PRINTF("%d\n\n", printf("1string 1 %s string 2 %s\n\n", "toto", "bonjour")); */
 	/* ASSERT_PRINTF("%d\n\n", printf("3string 1 %   s string 2 % s\n\n", "toto", "bonjour")); */
