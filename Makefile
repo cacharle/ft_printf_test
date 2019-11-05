@@ -31,6 +31,9 @@ interactive: all
 raw: all
 	./$(NAME)
 
+generate:
+	$(PYTHON) generate.py -n 100
+
 all: $(NAME)
 
 $(NAME): ft_printf_all $(OBJ) header.h tests/tests.h

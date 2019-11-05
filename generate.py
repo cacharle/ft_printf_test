@@ -22,21 +22,25 @@ CHARS.extend([r"\t", r"\n", r"\r", r"\v", r"\f", "\\\\"])
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        prog="ft_printf_test generator", description="A random  test generator")
-    parser.add_argument("-n", type=int, default=100,
-                        help="number of tests to generate")
+    parser = argparse.ArgumentParser(prog="ft_printf_test generator", description="A random  test generator")
+    parser.add_argument("-n", "--tests", type=int, default=100, help="number of tests to generate")
+    parser.add_argument("-c", "--check-gcc", action="store_true", help="check generated test is valid with gcc (slow)")
+    parser.add_argument("-o", "--output", default="generated.c", help="output file")
+    parser.add_argument("-a", "--args-max", default=5, type=int, help="maximum number of argument")
+    parser.add_argument("-f", "--flags-max",  default=3, type=int, help="maximum number of flags")
+    parser.add_argument("-s", "--str-max",  default=30, type=int, help="maximum length of string")
     return vars(parser.parse_args(sys.argv[1:]))
 
 class Generator:
     def __init__(self, options):
-        self.test_nb = options["n"]
-        self.output_filename = "generated.c"
+        self.test_nb = options["tests"]
+        self.check_valid = options["check_gcc"]
+        self.output_filename = options["output"]
         self.output_file = None
         self.tmp_filename = "tmp.c"
-        self.str_max_len = 10
-        self.args_max = 10
-        self.flags_max = 2
+        self.args_max = options["args_max"]
+        self.flags_max = options["flags_max"]
+        self.str_max_len = options["str_max"]
         self.width_max = 200
         self.width_wildcard_rate = 10
         self.width_empty_rate = 2
@@ -50,22 +54,21 @@ class Generator:
         self.pool = []
 
     def run(self):
+        if self.check_valid:
+            os.system(f"touch {self.tmp_filename}")
         with open(self.output_filename, "w") as self.output_file:
             self._write_header()
             while self.test_nb > 0:
                 assert_printf = self._random_printf()
-                print(assert_printf)
-                # self.test_nb -= 1
-                if self._compile(assert_printf):
-                    self.output_file.write(assert_printf + "\n\t")
-                    self.test_nb -= 1
-                    print("generated")
+                if self.check_valid and not self._compile(assert_printf):
+                    print("Failed to generate:", assert_printf)
+                    continue
+                self.test_nb -= 1
+                self.output_file.write(assert_printf + "\n\t")
+                print("Generated", self.test_nb)
             self._write_footer()
-        os.system(f"rm {self.tmp_filename}")
-
-    def quit(self):
-        pass
-
+        if self.check_valid:
+            os.system(f"rm {self.tmp_filename}")
 
     def _compile(self, assert_printf):
         with open(self.tmp_filename, "w") as tmp_file:
@@ -85,13 +88,13 @@ class Generator:
             conv = self.possible_conv[randrange(self.possible_conv_len)]
             f = self._random_fmt(conv)
             for _ in range(f.count("*")):
-                args.append(randrange(-100, 100))
+                args.append(randrange(-200, 200))
             formats.append(f)
             args.append(self._random_arg(conv))
         return formats, args
 
     def _random_fmt(self, conv):
-        return f"%{self._random_flags()}{self._random_width()}{self._random_precision()}{conv}"
+        return "%" + self._random_flags(conv) + self._random_width() + self._random_precision(conv) + conv
 
     def _random_arg(self, conv):
         return {
@@ -99,17 +102,32 @@ class Generator:
             's': "\"" + self._random_string() + "\"",
             'd': randrange(INT_MIN, INT_MAX + 1),
             'i': randrange(INT_MIN, INT_MAX + 1),
-            'u': randrange(UINT_MAX),
-            'x': randrange(UINT_MAX),
-            'X': randrange(UINT_MAX),
-            'p': str(randrange(ULONG_INT_MAX)) + "lu"
-            # '%': None
+            'u': str(randrange(UINT_MAX)) + "u",
+            'x': str(randrange(UINT_MAX)) + "u",
+            'X': str(randrange(UINT_MAX)) + "u",
+            'p': "(void*)" + str(randrange(ULONG_INT_MAX)) + "lu"
         }[conv]
 
-    def _random_flags(self):
+    def _random_flags(self, conv):
         if self.flags_max <= 0:
             return ""
-        return "".join([choice(self.possible_conv) for _ in range(randrange(self.flags_max))])
+
+        flags = "".join([choice(self.possible_flags) for _ in range(randrange(self.flags_max))])
+
+        if "+" in flags and conv in "psxXcu":
+            flags = flags.replace("+", "")
+        if " " in flags and conv in "pcsuxX":
+            flags = flags.replace(" ", "")
+        if "0" in flags and conv in "pcs":
+            flags = flags.replace("0", "")
+        if "#" in flags and conv in "upcsdi":
+            flags = flags.replace("#", "")
+
+        if "0" in flags and "-" in flags:
+            flags = flags.replace("0", "")
+        if " " in flags and "+" in flags:
+            flags = flags.replace(" ", "")
+        return flags
 
     def _random_width(self):
         p = randrange(100)
@@ -118,9 +136,11 @@ class Generator:
         p -= self.width_wildcard_rate
         if p < self.width_empty_rate:
             return ""
-        return str(randrange(self.width_max))
+        return str(randrange(1, self.width_max))
 
-    def _random_precision(self):
+    def _random_precision(self, conv):
+        if conv == "p" or conv == "c":
+            return ""
         p = randrange(100)
         if p < self.precision_wildcard_rate:
             return ".*"
@@ -144,9 +164,4 @@ class Generator:
 if __name__ == "__main__":
     options = parse_args()
     g = Generator(options)
-    try:
-        g.run()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        g.quit()
+    g.run()
