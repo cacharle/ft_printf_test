@@ -11,7 +11,6 @@ INT_MAX = 2147483647
 UINT_MAX = 4294967295
 CHAR_MIN = -128
 CHAR_MAX = 127
-
 ULONG_INT_MAX = 18446744073709551616
 
 CHARS = (list(string.ascii_lowercase) + list(string.ascii_uppercase)
@@ -30,6 +29,7 @@ def parse_args():
     parser.add_argument("-f", "--flags-max",  default=3, type=int, help="maximum number of flags")
     parser.add_argument("-s", "--str-max",  default=30, type=int, help="maximum length of string")
     return vars(parser.parse_args(sys.argv[1:]))
+
 
 class Generator:
     def __init__(self, options):
@@ -59,7 +59,7 @@ class Generator:
         with open(self.output_filename, "w") as self.output_file:
             self._write_header()
             while self.test_nb > 0:
-                assert_printf = self._random_printf()
+                assert_printf = self._gen_printf()
                 if self.check_valid and not self._compile(assert_printf):
                     print("Failed to generate:", assert_printf)
                     continue
@@ -76,30 +76,30 @@ class Generator:
             tmp_file.write(assert_printf + "}")
         return os.system("gcc -c -Wformat -Werror tmp.c > /dev/null 2>&1") == 0
 
-    def _random_printf(self):
-        formats, args = self._random_args()
+    def _gen_printf(self):
+        formats, args = self._printf_args()
         args_str = "".join(["," + str(a) for a in args if a is not None])
         return f"ASSERT_PRINTF(\"{''.join(formats)}\" {args_str});"
 
-    def _random_args(self):
+    def _printf_args(self):
         args = []
         formats = []
         for _ in range(randrange(1, self.args_max + 1)):
             conv = self.possible_conv[randrange(self.possible_conv_len)]
-            f = self._random_fmt(conv)
+            f = self._fmt(conv)
             for _ in range(f.count("*")):
                 args.append(randrange(-200, 200))
             formats.append(f)
-            args.append(self._random_arg(conv))
+            args.append(self._arg(conv))
         return formats, args
 
-    def _random_fmt(self, conv):
-        return "%" + self._random_flags(conv) + self._random_width() + self._random_precision(conv) + conv
+    def _fmt(self, conv):
+        return "%" + self._flags(conv) + self._width() + self._precision(conv) + conv
 
-    def _random_arg(self, conv):
+    def _arg(self, conv):
         return {
             'c': randrange(CHAR_MIN, CHAR_MAX + 1),
-            's': "\"" + self._random_string() + "\"",
+            's': "\"" + self._gen_string() + "\"",
             'd': randrange(INT_MIN, INT_MAX + 1),
             'i': randrange(INT_MIN, INT_MAX + 1),
             'u': str(randrange(UINT_MAX)) + "u",
@@ -108,12 +108,14 @@ class Generator:
             'p': "(void*)" + str(randrange(ULONG_INT_MAX)) + "lu"
         }[conv]
 
-    def _random_flags(self, conv):
-        if self.flags_max <= 0:
-            return ""
+    def _flags(self, conv):
+        return self._filter_flags(
+            "".join([choice(self.possible_flags)
+                     for _ in range(randrange(1, self.flags_max + 1))]),
+            conv
+        )
 
-        flags = "".join([choice(self.possible_flags) for _ in range(randrange(self.flags_max))])
-
+    def _filter_flags(self, flags, conv):
         if "+" in flags and conv in "psxXcu":
             flags = flags.replace("+", "")
         if " " in flags and conv in "pcsuxX":
@@ -129,7 +131,7 @@ class Generator:
             flags = flags.replace(" ", "")
         return flags
 
-    def _random_width(self):
+    def _width(self):
         p = randrange(100)
         if p < self.width_wildcard_rate:
             return "*"
@@ -138,7 +140,7 @@ class Generator:
             return ""
         return str(randrange(1, self.width_max))
 
-    def _random_precision(self, conv):
+    def _precision(self, conv):
         if conv == "p" or conv == "c":
             return ""
         p = randrange(100)
@@ -152,7 +154,7 @@ class Generator:
             return "."
         return "." + str(randrange(self.precision_max))
 
-    def _random_string(self):
+    def _gen_string(self):
         return "".join([choice(CHARS) for _ in range(randrange(self.str_max_len))])
 
     def _write_header(self):

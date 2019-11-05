@@ -58,5 +58,7 @@ int main(int argc, char **argv)
 	test_printf_tests_test();
 
 	generated_test();
+
+	/* saved_test(); */
 	return 0;
 }

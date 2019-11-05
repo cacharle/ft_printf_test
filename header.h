@@ -18,6 +18,7 @@ char *origin_buf;
 char *user_buf;
 
 void generated_test(void);
+void saved_test(void);
 
 int ft_printf(const char *format, ...);
 
