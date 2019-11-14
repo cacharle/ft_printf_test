@@ -160,7 +160,7 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("04 Test de chiffre sans h : %d, et %d\n", 432767, -432767);
 	/* ASSERT_PRINTF("%d\n", printf("03 This is a float : %f\n\n", 45.236)); */
 	/* ASSERT_PRINTF("%d\n", printf("02 This is a float : %.3f\n\n", 45.236)); */
-	/* ASSERT_PRINTF("%d\n",   printf("01 This is a float : %3f\n\n", 45.236)); */
+	/* ASSERT_PRINTF("%d\n", printf("01 This is a float : %3f\n\n", 45.236)); */
 	/* ASSERT_PRINTF("%d\n", printf("000 This is a float : %f\n\n", -45.236)); */
 	/* ASSERT_PRINTF("%d\n", printf("0 This is a float : %.3f\n\n", -45.236)); */
 	/* ASSERT_PRINTF("%d\n", printf("00 This is a float : %3f\n\n", -45.236)); */
@@ -216,7 +216,7 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%d\n", t);
 	ASSERT_PRINTF("%40s %n", "co", &t);
 	ASSERT_PRINTF("%d\n", t);
-	/* ASSERT_PRINTF("%050 d%n", 500, &t); */
+	ASSERT_PRINTF("%050d%n", 500, &t);
 	ASSERT_PRINTF("%d\n", t);
 	/* ASSERT_PRINTF("%d\n\n", printf("1string 1 %s string 2 %s\n\n", "toto", "bonjour")); */
 	/* ASSERT_PRINTF("%d\n\n", printf("3string 1 %   s string 2 % s\n\n", "toto", "bonjour")); */

@@ -48,8 +48,8 @@ class Generator:
         self.precision_wildcard_rate = 10
         self.precision_empty_rate = 2
         self.precision_point_rate = 4
-        self.possible_flags = "#0- +"
-        self.possible_conv ="diuxXcsp"
+        self.possible_flags = "#0- +'"
+        self.possible_conv ="diuxXcsp%"
         self.possible_conv_len = len(self.possible_conv)
         self.pool = []
 
@@ -90,7 +90,10 @@ class Generator:
             for _ in range(f.count("*")):
                 args.append(randrange(-200, 200))
             formats.append(f)
-            args.append(self._arg(conv))
+            a = self._arg(conv)
+            if a == "\"NULL\"":
+                a = "NULL"
+            args.append(a)
         return formats, args
 
     def _fmt(self, conv):
@@ -105,7 +108,8 @@ class Generator:
             'u': str(randrange(UINT_MAX)) + "u",
             'x': str(randrange(UINT_MAX)) + "u",
             'X': str(randrange(UINT_MAX)) + "u",
-            'p': "(void*)" + str(randrange(ULONG_INT_MAX)) + "lu"
+            'p': "(void*)" + str(randrange(ULONG_INT_MAX)) + "lu",
+            '%': None
         }[conv]
 
     def _flags(self, conv):
@@ -124,6 +128,8 @@ class Generator:
             flags = flags.replace("0", "")
         if "#" in flags and conv in "upcsdi":
             flags = flags.replace("#", "")
+        if "'" in flags and conv not in "diu":
+            flags = flags.replace("'", "")
 
         if "0" in flags and "-" in flags:
             flags = flags.replace("0", "")
@@ -155,6 +161,8 @@ class Generator:
         return "." + str(randrange(self.precision_max))
 
     def _gen_string(self):
+        if randrange(100) < 5:
+            return "NULL"
         return "".join([choice(CHARS) for _ in range(randrange(self.str_max_len))])
 
     def _write_header(self):

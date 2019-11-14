@@ -31,6 +31,15 @@ It will generate random test according to the `-Wformat` flag of gcc.
 - `> python3 generate.py -n [number of tests]`: generate n test
 - `> python3 generate.py -h`: show all available options
 
+## Memory leaks check
+
+You have to install [valgrind](http://valgrind.org/) with [brew](https://brew.sh/),
+[here](https://stackoverflow.com/questions/35775102) is a nice thread to install it
+locally if you don't have root access. You can then run `> brew install valgrind`.
+
+- `> make check_leaks`: run valgrind on a test (without the test themself).
+- `> make check_leaks_verbose`: add `--leak-check=full` to valgrind.
+
 ## Pro tips
 
 This doesnt handle timeout, so if your `ft_printf` goes in an infinite loop,

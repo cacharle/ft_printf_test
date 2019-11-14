@@ -1,5 +1,6 @@
 a.out
 ft_printf_test
+check_leaks
 *.o
 *.ghc
 *.dSYM
