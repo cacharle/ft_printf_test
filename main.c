@@ -30,16 +30,16 @@ int main(int argc, char **argv)
 	test_moulitest_15();
 	test_moulitest_16();
 	test_moulitest_18();
-	test_moulitest_40();
+/*	test_moulitest_40();
 	test_moulitest_41();
 	test_moulitest_42();
 	test_moulitest_43();
-	test_moulitest_45();
+	test_moulitest_45();*/
 	test_moulitest_50();
 	test_moulitest_51();
 	test_moulitest_52();
-	test_moulitest_60();
-	test_moulitest_61();
+/*	test_moulitest_60();
+	test_moulitest_61();*/
 	test_moulitest_69();
 	test_moulitest_70();
 	test_moulitest_71();
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	test_moulitest_73();
 	test_moulitest_74();
 	test_moulitest_79();
-	test_moulitest_90();
+//	test_moulitest_90();
 	test_moulitest_91();
 	test_moulitest_wildcard_01();
 	test_moulitest_wildcard_02();
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
 	test_printf_tests_test();
 
-	generated_test();
+//	generated_test();
 
 	/* saved_test(); */
 	return 0;
