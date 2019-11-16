@@ -10,7 +10,7 @@ RM = rm -f
 MAKE = make -j4
 
 SRC = main.c helper.c tests/pft_tests.c tests/moulitest_tests.c tests/printf_tester_tests.c \
-	  tests/printf_tests_tests.c saved_tests.c#generated.c saved_tests.c
+	  tests/printf_tests_tests.c saved_tests.c generated.c
 OBJ = $(SRC:.c=.o)
 
 run: all
