@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:45 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/06 18:13:47 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:59:06 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,21 @@ int main(int argc, char **argv)
 	test_moulitest_15();
 	test_moulitest_16();
 	test_moulitest_18();
+#ifdef FT_PRINTF_TEST_BONUS
 	test_moulitest_40();
 	test_moulitest_41();
 	test_moulitest_42();
 	test_moulitest_43();
 	test_moulitest_45();
+#endif
 	test_moulitest_50();
 	test_moulitest_51();
 	test_moulitest_52();
+
+#ifdef FT_PRINTF_TEST_BONUS
 	test_moulitest_60();
 	test_moulitest_61();
+#endif
 	test_moulitest_69();
 	test_moulitest_70();
 	test_moulitest_71();
@@ -60,7 +65,9 @@ int main(int argc, char **argv)
 	test_moulitest_73();
 	test_moulitest_74();
 	test_moulitest_79();
+#ifdef FT_PRINTF_TEST_BONUS
 	test_moulitest_90();
+#endif
 	test_moulitest_91();
 	test_moulitest_wildcard_01();
 	test_moulitest_wildcard_02();
