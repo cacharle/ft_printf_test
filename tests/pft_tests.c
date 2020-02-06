@@ -38,9 +38,7 @@ void test_pft_nocrash(void)
 	ASSERT_PRINTF("%hp", &ncm_p);
 	ASSERT_PRINTF("%lp", &ncm_p);
 	ASSERT_PRINTF("%llp", &ncm_p);
-	ASSERT_PRINTF("%Lp", &ncm_p);
 	ASSERT_PRINTF("%-p", &ncm_p);
-	ASSERT_PRINTF("%Ld", 42);
 	ASSERT_PRINTF("%#d", 42);
 	ASSERT_PRINTF("%hhhd", 42);
 	ASSERT_PRINTF("%hhhhd", 42);

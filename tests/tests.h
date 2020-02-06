@@ -3,6 +3,7 @@
 
 void test_pft_nacked(void);
 void test_pft_percent(void);
+void test_pft_nocrash(void);
 void test_pft_string(void);
 void test_pft_int_i(void);
 void test_pft_int_d(void);

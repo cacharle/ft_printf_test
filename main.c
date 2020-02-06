@@ -8,6 +8,7 @@ int main(int argc, char **argv)
 	(void)argv;
 	test_pft_nacked();
 	test_pft_percent();
+	/* test_pft_nocrash(); */
 	test_pft_string();
 	test_pft_int_i();
 	test_pft_int_d();
