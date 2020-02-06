@@ -45,3 +45,10 @@ locally if you don't have root access. You can then run `> brew install valgrind
 This doesnt handle timeout, so if your `ft_printf` goes in an infinite loop,
 this test will too.
 `Ctrl-C` is your best friend.
+
+## Credits
+
+- [moulitest](https://github.com/yyang42/moulitest) by yyang42
+- [pft](https://github.com/gavinfielder/pft) by gavinfielder
+- [printf\_tester](https://github.com/AntoineBourin/printf-tester) by AntoineBourin
+- [printf\_tests](https://github.com/BartMassey/printf-tests) by BartMassey
