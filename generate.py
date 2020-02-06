@@ -6,7 +6,7 @@
 #    By: cacharle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 18:13:26 by cacharle          #+#    #+#              #
-#    Updated: 2020/02/06 18:13:28 by cacharle         ###   ########.fr        #
+#    Updated: 2020/02/06 19:36:46 by cacharle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ def parse_args():
     parser.add_argument("-a", "--args-max", default=5, type=int, help="maximum number of argument")
     parser.add_argument("-f", "--flags-max",  default=3, type=int, help="maximum number of flags")
     parser.add_argument("-s", "--str-max",  default=30, type=int, help="maximum length of string")
+    parser.add_argument("--bonus",  action="store_true",  help="generate with bonus flags")
     return vars(parser.parse_args(sys.argv[1:]))
 
 
@@ -60,8 +61,11 @@ class Generator:
         self.precision_wildcard_rate = 10
         self.precision_empty_rate = 2
         self.precision_point_rate = 4
-        self.possible_flags = "#0- +'"
         self.possible_conv ="diuxXcsp%"
+        if options["bonus"]:
+            self.possible_flags = "#0- +'"
+        else:
+            self.possible_flags = "0-"
         self.possible_conv_len = len(self.possible_conv)
         self.pool = []
 

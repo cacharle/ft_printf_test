@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:15:10 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/06 19:24:49 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:52:26 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void test_pft_nocrash(void)
 	ASSERT_PRINTF("%hp", &ncm_p);
 	ASSERT_PRINTF("%lp", &ncm_p);
 	ASSERT_PRINTF("%llp", &ncm_p);
-	ASSERT_PRINTF("%Lp", &ncm_p);*/
+	ASSERT_PRINTF("%Lp", &ncm_p);
 	ASSERT_PRINTF("%-p", &ncm_p);
 	ASSERT_PRINTF("%Ld", 42);
 	ASSERT_PRINTF("%#d", 42);
@@ -86,7 +86,7 @@ void test_pft_nocrash(void)
 	ASSERT_PRINTF("%hhlu", 42);
 	ASSERT_PRINTF("%hhllu", 42);
 	ASSERT_PRINTF("%llhu", 42);
-	ASSERT_PRINTF("%lllu", 42);*/
+	ASSERT_PRINTF("%lllu", 42);
 	ASSERT_PRINTF("%-u", 42);
 	ASSERT_PRINTF("%Lx", 42);
 	ASSERT_PRINTF("%+x", 42);
@@ -174,18 +174,18 @@ void test_pft_nocrash(void)
 	ASSERT_PRINTF("%h");
 	ASSERT_PRINTF("%ll");
 	ASSERT_PRINTF("%l");
-	ASSERT_PRINTF("%L");*/
+	ASSERT_PRINTF("%L");
 	ASSERT_PRINTF("%f");
 	ASSERT_PRINTF("%o");
-	ASSERT_PRINTF("%1$s", NULL);*/
+	ASSERT_PRINTF("%1$s", NULL);
 	ASSERT_PRINTF("% s", NULL);
-	ASSERT_PRINTF("%#s", NULL);*/
+	ASSERT_PRINTF("%#s", NULL);
 	ASSERT_PRINTF("%+s", NULL);
 	ASSERT_PRINTF("%hhs", NULL);
 	ASSERT_PRINTF("%hs", NULL);
 	ASSERT_PRINTF("%lls", NULL);
 	ASSERT_PRINTF("%ls", NULL);
-	ASSERT_PRINTF("%Ls", NULL);*/
+	ASSERT_PRINTF("%Ls", NULL);
 	ASSERT_PRINTF("%b", NULL);
 	ASSERT_PRINTF("%f", NULL);
 	ASSERT_PRINTF("%o", NULL);
@@ -390,6 +390,15 @@ void test_pft_string(void)
 
 void test_pft_int_i(void)
 {
+	static char 		ch_pos_1 = 100, ch_neg_1 = -87;
+	static short		sh_pos_1 = 3047, sh_neg_1 = -8875;
+	static int			i_pos_1 = 878023;
+	static long		l_pos_1 = 22337203685477, l_neg_1 = -22337203685477;
+	static long long	ll_pos_1 = 22337203685477, ll_neg_1 = -22337203685477;
+	static long		lmax	= 9223372036854775807;
+	static long		lmin	= -9223372036854775807;
+	static long long llmax = 9223372036854775807;
+	static long long	llmin = -9223372036854775807ll;
 	ASSERT_PRINTF("this %i number", 17);
 	ASSERT_PRINTF("this %i number", -267);
 	ASSERT_PRINTF("this %i number", 0);
@@ -717,15 +726,6 @@ void test_pft_int_i(void)
 	ASSERT_PRINTF("%0-3.7i", -2375);
 	ASSERT_PRINTF("%0-3.3i", 6983);
 	ASSERT_PRINTF("%0-3.3i", -8462);
-	static char 		ch_pos_1 = 100, ch_neg_1 = -87;
-	static short		sh_pos_1 = 3047, sh_neg_1 = -8875;
-	static int			i_pos_1 = 878023;
-	static long		l_pos_1 = 22337203685477, l_neg_1 = -22337203685477;
-	static long long	ll_pos_1 = 22337203685477, ll_neg_1 = -22337203685477;
-	static long		lmax	= 9223372036854775807;
-	static long		lmin	= -9223372036854775807;
-	static long long llmax = 9223372036854775807;
-	static long long	llmin = -9223372036854775807ll;
 	ASSERT_PRINTF("%.0i", 0);
 	ASSERT_PRINTF("%.i", 0);
 	ASSERT_PRINTF("%5.0i", 0);
@@ -736,6 +736,15 @@ void test_pft_int_i(void)
 
 void test_pft_int_d(void)
 {
+	static char             ch_pos_1 = 100, ch_neg_1 = -87;
+	static short            sh_pos_1 = 3047, sh_neg_1 = -8875;
+	static int                      i_pos_1 = 878023;
+	static long             l_pos_1 = 22337203685477, l_neg_1 = -22337203685477;
+	static long long        ll_pos_1 = 22337203685477, ll_neg_1 = -22337203685477;
+	static long             lmax    = 9223372036854775807;
+	static long             lmin    = -9223372036854775807;
+	static long long llmax = 9223372036854775807;
+	static long long        llmin = -9223372036854775807ll;
 #ifdef FT_PRINTF_TEST_BONUS
 	ASSERT_PRINTF("this %d number", 17);
 	ASSERT_PRINTF("this %d number", -267);
@@ -1043,15 +1052,6 @@ void test_pft_int_d(void)
 	ASSERT_PRINTF("%-3.3d", 6983);
 	ASSERT_PRINTF("%-3.3d", -8462);
 
-	static char             ch_pos_1 = 100, ch_neg_1 = -87;
-	static short            sh_pos_1 = 3047, sh_neg_1 = -8875;
-	static int                      i_pos_1 = 878023;
-	static long             l_pos_1 = 22337203685477, l_neg_1 = -22337203685477;
-	static long long        ll_pos_1 = 22337203685477, ll_neg_1 = -22337203685477;
-	static long             lmax    = 9223372036854775807;
-	static long             lmin    = -9223372036854775807;
-	static long long llmax = 9223372036854775807;
-	static long long        llmin = -9223372036854775807ll;
 
 	ASSERT_PRINTF("%08.5d", 34);
 	ASSERT_PRINTF("%010.5d", -216);

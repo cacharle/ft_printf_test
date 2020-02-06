@@ -23,6 +23,10 @@ or modify the `FT_PRINTF_PATH` variable in the Makefile
 - `> python3 prettier -h`: show prettier options
 - `> make generate`: generate 100 random test 
 
+### Bonus
+
+All the previous `make` command suffixed with `bonus` (i.e `make runbonus`). You may need
+to `make fclean` in order to clean the previous .o files.
 
 ## Random Test Generator
 
@@ -30,6 +34,10 @@ It will generate random test according to the `-Wformat` flag of gcc.
 
 - `> python3 generate.py -n [number of tests]`: generate n test
 - `> python3 generate.py -h`: show all available options
+
+### Bonus
+
+Add the `--bonus` flag i.e: `> python3 generate.py -n [number of tests] --bonus`.
 
 ## Memory leaks check
 
@@ -52,3 +60,4 @@ this test will too.
 - [pft](https://github.com/gavinfielder/pft) by gavinfielder
 - [printf\_tester](https://github.com/AntoineBourin/printf-tester) by AntoineBourin
 - [printf\_tests](https://github.com/BartMassey/printf-tests) by BartMassey
+- @MrHade for the no bonus test.
