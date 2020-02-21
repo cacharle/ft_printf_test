@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:38 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/06 18:13:39 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/02/21 01:14:37 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void test_tear_down(void)
 char *read_stdout_buf(void)
 {
 	fflush(stdout);
-	buf[0] = 0;
+	bzero(buf, BUF_SIZE + 1);
 	int ret = read(pipefd[0], buf, BUF_SIZE);
 	if (ret != -1)
 		buf[ret] = '\0';

@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:32 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/06 18:13:33 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/02/21 01:21:48 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,31 @@ void test_setup(void);
 void test_tear_down(void);
 char *read_stdout_buf(void);
 
-// # define DEBUG
-
-# define TEST_SEGFAULT(x) do { \
-	if ((pid = fork()) < 0) \
-	exit(EXIT_FAILURE); \
-	if (pid == 0) { \
-		do { x } while(0); \
-		exit(EXIT_SUCCESS); \
-	} else { \
-		wait(&pid); \
+# define TEST_SEGFAULT(x) do {       \
+	if ((pid = fork()) < 0)          \
+	exit(EXIT_FAILURE);              \
+	if (pid == 0) {                  \
+		do { x } while(0);           \
+		exit(EXIT_SUCCESS);          \
+	} else {                         \
+		wait(&pid);                  \
 		signaled = WIFSIGNALED(pid); \
-	} \
+	}                                \
 } while(0);
 
-# define TEST_PRINTF(...) do {                  \
-	test_setup();                               \
-	TEST_SEGFAULT(\
-		origin_ret = printf(__VA_ARGS__);       \
-	);\
+# define TEST_PRINTF(...) do {              \
+	test_setup();                           \
+	TEST_SEGFAULT(                          \
+		origin_ret = printf(__VA_ARGS__);   \
+	);                                      \
 	origin_buf = strdup(read_stdout_buf()); \
-	origin_signaled = signaled;                 \
-	TEST_SEGFAULT(\
-		user_ret = ft_printf(__VA_ARGS__);      \
-	);\
+	origin_signaled = signaled;             \
+	TEST_SEGFAULT(                          \
+		user_ret = ft_printf(__VA_ARGS__);  \
+	);                                      \
 	user_buf = strdup(read_stdout_buf());   \
-	user_signaled = signaled;                   \
-	test_tear_down();                           \
+	user_signaled = signaled;               \
+	test_tear_down();                       \
 } while (0)
 
 # define ASSERT_PRINTF(...) do {                   \
@@ -79,7 +77,7 @@ char *read_stdout_buf(void);
 	if (!origin_signaled && user_signaled)         \
 		print_signaled_ko(#__VA_ARGS__);           \
 	else if (origin_signaled && user_signaled)     \
-		print_ok(); \
+		print_ok();                                \
 	else if (!origin_signaled && !user_signaled) { \
 		if (memcmp(origin_buf, user_buf,           \
 			    strlen(origin_buf) + 1) != 0)      \
@@ -87,8 +85,8 @@ char *read_stdout_buf(void);
 		else if (origin_ret != user_ret)           \
 			print_ret_ko(#__VA_ARGS__);            \
 		else                                       \
-		print_ok(); \
-	} \
+		print_ok();                                \
+	}                                              \
 	if (!origin_signaled) free(origin_buf);        \
 	if (!user_signaled) free(user_buf);            \
 } while(0);

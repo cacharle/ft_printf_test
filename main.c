@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:45 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/20 01:11:09 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/02/21 01:23:31 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 
 	generated_test();
 
-	// added according to user
+	// added according to users
 	ASSERT_PRINTF("%.p", NULL);
 	ASSERT_PRINTF("%.0p", NULL);
 	ASSERT_PRINTF("%.2p", NULL);
@@ -88,6 +88,7 @@ int main(int argc, char **argv)
 	ASSERT_PRINTF("%.5p", NULL);
 	ASSERT_PRINTF("%.6p", NULL);
 	ASSERT_PRINTF("%.7p", NULL);
+
 	/* saved_test(); */
 	return 0;
 }
