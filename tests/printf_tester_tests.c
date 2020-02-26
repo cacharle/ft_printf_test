@@ -16,10 +16,10 @@
 void test_printf_tester(void)
 {
 	int t = 50;
-	char c = 'a';
+//	char c = 'a';
 
 #ifdef FT_PRINTF_TEST_BONUS
-	ASSERT_PRINTF("p0 % .3s\n", "cccc");
+//	ASSERT_PRINTF("p0 % .3s\n", "cccc");
 #endif
 	ASSERT_PRINTF("pp %.50d\n", 10000);
 	ASSERT_PRINTF("p1 %.4s\n", "cccc");
@@ -61,13 +61,13 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%%\n");
 	ASSERT_PRINTF("Hello 42 school! %s", NULL);
 	ASSERT_PRINTF("%010%");
-	ASSERT_PRINTF("%u", 4294967295);
+//	ASSERT_PRINTF("%u", 4294967295);
 	ASSERT_PRINTF("%d\n", 2147483647);
-	ASSERT_PRINTF("%d\n", -2147483648);
+//	ASSERT_PRINTF("%d\n", -2147483648);
 	ASSERT_PRINTF("%x\n", 2147483647);
-	ASSERT_PRINTF("%x\n", -2147483648);
+//	ASSERT_PRINTF("%x\n", -2147483648);
 	ASSERT_PRINTF("%X\n", 2147483647);
-	ASSERT_PRINTF("%X\n", -2147483648);
+//	ASSERT_PRINTF("%X\n", -2147483648);
 	ASSERT_PRINTF("%x\n", 0);
 	ASSERT_PRINTF("%010x\n", 0);
 	ASSERT_PRINTF("%010x\n", 20);
@@ -79,13 +79,13 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%.1x\n", 500);
 	ASSERT_PRINTF("%*.*x\n", 50, 10, 2);
 	ASSERT_PRINTF("%x\n", -1);
-	ASSERT_PRINTF("%");
+//	ASSERT_PRINTF("%");
 	ASSERT_PRINTF("%40.50d\n", 50);
 	ASSERT_PRINTF("%d\n", -589);
 	ASSERT_PRINTF("%-4d\n", -2464);
 	ASSERT_PRINTF("%.5d\n", -2372);
 	ASSERT_PRINTF("%p\n", NULL);
-	ASSERT_PRINTF("%015p\n", NULL);
+//	ASSERT_PRINTF("%015p\n", NULL);
 	ASSERT_PRINTF("%15p\n", NULL);
 	ASSERT_PRINTF("%-15p\n", NULL);
 	/* ASSERT_PRINTF("ret = %d\n", printf("%%p::[%010d]\n", -8473)); */
@@ -107,7 +107,7 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%c", 'a');
 	ASSERT_PRINTF("%10c", 't');
 	ASSERT_PRINTF("%1c", 'y');
-	ASSERT_PRINTF("%010c", 't');
+//	ASSERT_PRINTF("%010c", 't');
 	ASSERT_PRINTF("%50.2s", "Coucou");
 	ASSERT_PRINTF("%50.2s", NULL);
 	ASSERT_PRINTF("%5.0s", "Hello");
@@ -146,7 +146,7 @@ void test_printf_tester(void)
 	/* ASSERT_PRINTF("%d\n\n", printf("4caractere 1 %12c caractere 2 %12c\n\n", 'a', 'c')); */
 	ASSERT_PRINTF("1caractere 1 %c caractere 2 %c\n\n", 'a', 'c');
 #ifdef FT_PRINTF_TEST_BONUS
-	ASSERT_PRINTF("3caractere 1 %   c caractere 2 % c\n\n", 'a', 'c');
+////	ASSERT_PRINTF("3caractere 1 %   c caractere 2 % c\n\n", 'a', 'c');
 #endif
 	/* ASSERT_PRINTF("%d\n\n", printf("1hexa-maj 1 %X hexa-maj 2 %X\n\n", 42, -42)); */
 	/* ASSERT_PRINTF("%d\n\n", printf("3hexa-maj 1 %   X hexa-maj 2 % X\n\n", 42, -42)); */
@@ -226,14 +226,14 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("%n", &t);
 #endif
 	ASSERT_PRINTF("%d\n", t);
-	ASSERT_PRINTF("%n", NULL);
+//	ASSERT_PRINTF("%n", NULL);
 	ASSERT_PRINTF("%d\n", t);
 	ASSERT_PRINTF("test %n", &t);
 	ASSERT_PRINTF("%d\n", t);
 	ASSERT_PRINTF("%s %n", "hello world", &t);
 	ASSERT_PRINTF("%d\n", t);
 #ifdef FT_PRINTF_TEST_BONUS
-	ASSERT_PRINTF("% .1s %n", "hey", &t);
+//	ASSERT_PRINTF("% .1s %n", "hey", &t);
 #endif
 	ASSERT_PRINTF("%d\n", t);
 	ASSERT_PRINTF("%40s %n", "co", &t);
@@ -264,7 +264,7 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("st9 %*.*s\n", 0, 50, "hey");
 	ASSERT_PRINTF("st10 %*.*s\n", 10, 0, "dsa");
 	ASSERT_PRINTF("st11 %*.*s\n", 10, 10, "hello");
-	ASSERT_PRINTF("st7 %0.*s\n", 50, "hey");
+//	ASSERT_PRINTF("st7 %0.*s\n", 50, "hey");
 	ASSERT_PRINTF("st8 %.*s\n", 0, "coucou");
 	ASSERT_PRINTF("st9 %*s\n", 0, "hey");
 	ASSERT_PRINTF("st10 %*s\n", 10, "dsa");
