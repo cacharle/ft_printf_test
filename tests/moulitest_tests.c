@@ -70,7 +70,9 @@ void test_moulitest_05(void)
 	ASSERT_PRINTF("%%%%%%%%%%");
 	ASSERT_PRINTF(".%%.%%.%%.%%.%%.%%.%%.%%.");
 //	ASSERT_PRINTF("%");
+#ifdef FT_PRINTF_TEST_BONUS
 	ASSERT_PRINTF("{% %}");
+#endif
 }
 
 void test_moulitest_06(void)
