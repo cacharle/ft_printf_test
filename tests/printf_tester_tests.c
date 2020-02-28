@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:15:31 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/06 19:02:48 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:36:08 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,21 +224,21 @@ void test_printf_tester(void)
 	ASSERT_PRINTF("percent 7 % 12%");
 	ASSERT_PRINTF("percent 8 %  *%", 13);
 	ASSERT_PRINTF("%n", &t);
+	ASSERT_PRINTF("test %n", &t);
+	ASSERT_PRINTF("%s %n", "hello world", &t);
 #endif
 	ASSERT_PRINTF("%d\n", t);
 //	ASSERT_PRINTF("%n", NULL);
 	ASSERT_PRINTF("%d\n", t);
-	ASSERT_PRINTF("test %n", &t);
 	ASSERT_PRINTF("%d\n", t);
-	ASSERT_PRINTF("%s %n", "hello world", &t);
 	ASSERT_PRINTF("%d\n", t);
 #ifdef FT_PRINTF_TEST_BONUS
 //	ASSERT_PRINTF("% .1s %n", "hey", &t);
+	ASSERT_PRINTF("%40s %n", "co", &t);
+	ASSERT_PRINTF("%050d%n", 500, &t);
 #endif
 	ASSERT_PRINTF("%d\n", t);
-	ASSERT_PRINTF("%40s %n", "co", &t);
 	ASSERT_PRINTF("%d\n", t);
-	ASSERT_PRINTF("%050d%n", 500, &t);
 	ASSERT_PRINTF("%d\n", t);
 	/* ASSERT_PRINTF("%d\n\n", printf("1string 1 %s string 2 %s\n\n", "toto", "bonjour")); */
 	/* ASSERT_PRINTF("%d\n\n", printf("3string 1 %   s string 2 % s\n\n", "toto", "bonjour")); */
