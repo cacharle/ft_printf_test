@@ -71,7 +71,7 @@ class Generator:
 
     def run(self):
         if self.check_valid:
-            os.system(f"touch {self.tmp_filename}")
+            os.system("touch {}".format(self.tmp_filename))
         with open(self.output_filename, "w") as self.output_file:
             self._write_header()
             while self.test_nb > 0:
@@ -84,7 +84,7 @@ class Generator:
                 print("Generated", self.test_nb)
             self._write_footer()
         if self.check_valid:
-            os.system(f"rm {self.tmp_filename}")
+            os.system("rm {}".format(self.tmp_filename))
 
     def _compile(self, assert_printf):
         with open(self.tmp_filename, "w") as tmp_file:
@@ -95,7 +95,7 @@ class Generator:
     def _gen_printf(self):
         formats, args = self._printf_args()
         args_str = "".join(["," + str(a) for a in args if a is not None])
-        return f"ASSERT_PRINTF(\"{''.join(formats)}\" {args_str});"
+        return "ASSERT_PRINTF(\"{}\" {});".format(''.join(formats), args_str)
 
     def _printf_args(self):
         args = []

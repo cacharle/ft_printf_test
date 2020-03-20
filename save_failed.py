@@ -31,5 +31,5 @@ if __name__ == "__main__":
         for l in previous_lines:
             save_file.write(l)
         for l in error_lines:
-            save_file.write(f"ASSERT_PRINTF{l}\n\t")
+            save_file.write("ASSERT_PRINTF{}\n\t".format(l))
         save_file.write("}\n")

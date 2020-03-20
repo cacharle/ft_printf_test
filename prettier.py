@@ -17,11 +17,11 @@ import argparse
 
 
 def green(*strings):
-    return "".join([f"\033[32m{s}\033[0m" for s in strings])
+    return "".join(["\033[32m{}\033[0m".format(s) for s in strings])
 
 
 def red(*strings):
-    return "".join([f"\033[31m{s}\033[0m" for s in strings])
+    return "".join(["\033[31m{}\033[0m".format(s) for s in strings])
 
 
 def parse_args():
@@ -40,7 +40,7 @@ def parse_args():
 
 
 def print_log_ko(ko, options):
-    print(f"- [{red(ko['type'])}] ft_printf({ko['args']})")
+    print("- [{}] ft_printf({})".format(red(ko['type']), ko['args']))
     if options["verbose"]:
         print("   expected: ", ko["expected"])
         print("   actual:   ", ko["actual"])
@@ -87,7 +87,7 @@ def write_logs(logs, options):
     with open(filename, "w") as log_file:
         for ko in logs["ko_info"]:
             try:
-                log_file.write(f"- [{ko['type']}] ft_printf({ko['args']})\n")
+                log_file.write("- [{}] ft_printf({})\n".format(ko['type'], ko['args']))
                 log_file.write("   expected: " + ko["expected"] + "\n")
                 log_file.write("   actual:   " + ko["actual"] + "\n")
             except UnicodeEncodeError:
@@ -97,7 +97,7 @@ def write_logs(logs, options):
 
 
 def print_logs(logs, options):
-    total_str = f"\n\nTotal     {green('OK: ', logs['ok'])}  {red('KO: ', logs['ko'])}"
+    total_str = "\n\nTotal     {}  {}".format(green('OK: ', logs['ok']), red('KO: ', logs['ko']))
     print(total_str)
     print("=" * (len(total_str) - len(green("")) * 2 - len(red("")) * 2 - 2))
 

@@ -18,9 +18,14 @@ LDFLAGS = -L$(FT_PRINTF_PATH) -lftprintf
 
 NAME = ft_printf_test
 CHECK_LEAKS_NAME = check_leaks
-PYTHON = python3
 RM = rm -f
 MAKE = make
+
+PYTHON = python3
+# ifeq ($(shell $(PYTHON) --version | cut -d ' ' -f 2 | cut -d '.' -f 1),2)
+# PYTHON = python3
+# $(error You must have python3 installed)
+# endif
 
 SRC = main.c helper.c tests/pft_tests.c tests/moulitest_tests.c tests/printf_tester_tests.c \
 	  tests/printf_tests_tests.c saved_tests.c generated.c
@@ -49,7 +54,7 @@ no_clearbonus: allbonus no_clear
 interactive: all
 	./$(NAME) | $(PYTHON) prettier.py --interactive
 
-interactivebonus: allbonus interactive  
+interactivebonus: allbonus interactive
 
 raw: all
 	./$(NAME)
