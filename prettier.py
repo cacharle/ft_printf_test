@@ -6,7 +6,7 @@
 #    By: cacharle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 18:13:52 by cacharle          #+#    #+#              #
-#    Updated: 2020/02/06 18:13:54 by cacharle         ###   ########.fr        #
+#    Updated: 2020/04/02 19:55:29 by charles          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,12 +56,12 @@ def parse(options):
     for line in sys.stdin:
         sys.stdout.flush()
         line = line.strip()
-        if line == "OK":
-            logs["ok"] += 1
-            print(green("."), end="")
-            continue
-        m = re.search("^FAIL/(OUTPUT|RETURN|SEGFAULT)<>ARGS:(.*)<>EXPECTED:(.*)<>ACTUAL:(.*)$", line)
+        m = re.search("^FAIL/(OUTPUT|RETURN|SEGFAULT|TIMEOUT)<>ARGS:(.*)<>EXPECTED:(.*)<>ACTUAL:(.*)$", line)
         if m is None:
+            if line == "OK":
+                logs["ok"] += 1
+                print(green("."), end="")
+                continue
             print(line)
             print("PARSING ERROR")
             continue

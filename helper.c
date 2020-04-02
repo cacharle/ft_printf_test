@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:38 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/21 01:14:37 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/04/02 20:31:04 by charles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	buf[BUF_SIZE + 1] = {0};
 
 void test_setup(void)
 {
+	origin_buf = NULL;
+	user_buf = NULL;
 	if (saved_stdout != -1)
 		test_tear_down();
 	saved_stdout = dup(STDOUT_FILENO);
@@ -77,6 +79,12 @@ void print_ret_ko(char *msg)
 void print_signaled_ko(char *msg)
 {
 	printf("FAIL/SEGFAULT<>ARGS:%s<>EXPECTED:<>ACTUAL:\n", msg);
+	fflush(stdout);
+}
+
+void print_timeouted(char *msg)
+{
+	printf("FAIL/TIMEOUT<>ARGS:%s<>EXPECTED:<>ACTUAL:\n", msg);
 	fflush(stdout);
 }
 

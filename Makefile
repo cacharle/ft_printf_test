@@ -6,7 +6,7 @@
 #    By: cacharle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 18:13:15 by cacharle          #+#    #+#              #
-#    Updated: 2020/02/06 19:50:23 by cacharle         ###   ########.fr        #
+#    Updated: 2020/04/02 20:50:47 by charles          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,35 +69,33 @@ generatebonus:
 
 .PHONY: check_leaks
 check_leaks:
-	$(CC) $(LDFLAGS) $(CCFLAGS) -g -o $(CHECK_LEAKS_NAME) check_leaks.c
+	$(CC) $(CCFLAGS) -g -o $(CHECK_LEAKS_NAME) check_leaks.c $(LDFLAGS)
 	valgrind ./$(CHECK_LEAKS_NAME) > /dev/null
 
 check_leaks_verbose:
-	$(CC) $(LDFLAGS) $(CCFLAGS) -g -o $(CHECK_LEAKS_NAME) check_leaks.c
+	$(CC) $(CCFLAGS) -g -o $(CHECK_LEAKS_NAME) check_leaks.c $(LDFLAGS)
 	valgrind --leak-check=full ./$(CHECK_LEAKS_NAME) > /dev/null
 
 
-all: ft_printf_all $(NAME)
+all: $(NAME)
 
 allbonus: CCFLAGS += -D FT_PRINTF_TEST_BONUS
 allbonus: ft_printf_all ft_printf_bonus $(NAME)
 
-$(NAME): $(OBJ) header.h tests/tests.h
-	$(CC) $(LDFLAGS) $(CCFLAGS) -o $@ $(OBJ)
+$(NAME): ft_printf_all $(OBJ)
+	$(CC) $(CCFLAGS) -o $@ $(OBJ) $(LDFLAGS)
 
-%.o: %.c
+%.o: %.c header.h tests/tests.h
 	$(CC) $(CCFLAGS) -c -o $@ $<
 
 clean:
 	$(RM) $(OBJ)
-	$(MAKE) -C $(FT_PRINTF_PATH) clean
 
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(FT_PRINTF_PATH) fclean
 
 re: fclean all
-	$(MAKE) -C $(FT_PRINTF_PATH) re
 
 ft_printf_all:
 	$(MAKE) -C $(FT_PRINTF_PATH) all

@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:45 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/26 17:33:55 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/04/02 20:46:17 by charles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 
 int main(int argc, char **argv)
 {
+	timeout.tv_sec = 1;
+	timeout.tv_usec = 0;
+	if (pipe(timeout_pipe) == -1)
+		return (1);
+
 	(void)argc;
 	(void)argv;
+
+	timeout.tv_sec = 0;
+	timeout.tv_usec = 100000;
 	test_pft_nacked();
 	test_pft_percent();
-	/* test_pft_nocrash(); */
+	test_pft_nocrash();
 	test_pft_string();
 	test_pft_int_i();
 	test_pft_int_d();

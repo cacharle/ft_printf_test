@@ -21,7 +21,7 @@ or modify the `FT_PRINTF_PATH` variable in the Makefile
 - `> make quiet`: to show a more quiet output
 - `> make raw`: run the tests in a ugly but parsable format
 - `> python3 prettier -h`: show prettier options
-- `> make generate`: generate 100 random test 
+- `> make generate`: generate 100 random test
 
 ### Bonus
 
@@ -47,12 +47,6 @@ locally if you don't have root access. You can then run `> brew install valgrind
 
 - `> make check_leaks`: run valgrind on a test (without the test themself).
 - `> make check_leaks_verbose`: add `--leak-check=full` to valgrind.
-
-## Pro tips
-
-This doesnt handle timeout, so if your `ft_printf` goes in an infinite loop,
-this test will too.
-`Ctrl-C` is your best friend.
 
 ## Credits
 
