@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:32 by cacharle          #+#    #+#             */
-/*   Updated: 2020/04/02 20:49:26 by charles          ###   ########.fr       */
+/*   Updated: 2020/07/08 18:16:16 by ykoh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdbool.h>
+# include <signal.h>
 
 int pid;
 int pid2;
