@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:15:10 by cacharle          #+#    #+#             */
-/*   Updated: 2020/04/02 20:46:35 by charles          ###   ########.fr       */
+/*   Updated: 2020/07/08 18:15:02 by ykoh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void test_pft_nocrash(void)
 //	ASSERT_PRINTF("%hhllo", 42);
 //	ASSERT_PRINTF("%llho", 42);
 //	ASSERT_PRINTF("%lllo", 42);
-	ASSERT_PRINTF("%-o", 42);
 //////	ASSERT_PRINTF("%Lu", 42);
 //	ASSERT_PRINTF("%#u", 42);
 //	ASSERT_PRINTF("%+u", 42);

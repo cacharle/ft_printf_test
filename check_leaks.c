@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:14:36 by cacharle          #+#    #+#             */
-/*   Updated: 2020/02/06 18:14:37 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/07/08 18:14:37 by ykoh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,6 @@ int main()
 	ft_printf("%hhllo", 42);
 	ft_printf("%llho", 42);
 	ft_printf("%lllo", 42);
-	ft_printf("%-o", 42);
 	ft_printf("%Lu", 42);
 	ft_printf("%#u", 42);
 	ft_printf("%+u", 42);
