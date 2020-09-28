@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -6,7 +8,7 @@
 #    By: cacharle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 18:13:26 by cacharle          #+#    #+#              #
-#    Updated: 2020/02/06 19:36:46 by cacharle         ###   ########.fr        #
+#    Updated: 2020/09/28 16:47:31 by cacharle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +29,14 @@ ULONG_INT_MAX = 18446744073709551616
 
 CHARS = (list(string.ascii_lowercase) + list(string.ascii_uppercase)
         + list(string.punctuation) + list(string.digits))
+CHARS_UNICODE = (
+    "喀喁喂喃善喅喆喇喈喉喊喋喌喍喎喏"
+    "⟀⟁⟂⟃⟄⟅⟆⟇⟈⟉⟊⟋⟌⟍⟎⟏)"
+    "൰൱൲൳൴൵൶൷൸൹ൺൻർൽൾൿ"
+    "¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇ"
+    "ÈÉÊËÌÍÎÏ00D0ÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéê"
+    "ëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎď"
+)
 CHARS.remove("\"")
 CHARS.remove("\\")
 CHARS.extend([r"\t", r"\n", r"\r", r"\v", r"\f", "\\\\"])
@@ -63,8 +73,10 @@ class Generator:
         self.precision_point_rate = 4
         self.possible_conv ="diuxXcsp%"
         if options["bonus"]:
+            self.bonus = True
             self.possible_flags = "#0- +'"
         else:
+            self.bonus = False
             self.possible_flags = "0-"
         self.possible_conv_len = len(self.possible_conv)
         self.pool = []
@@ -129,11 +141,13 @@ class Generator:
         }[conv]
 
     def _flags(self, conv):
-        return self._filter_flags(
+        flags = self._filter_flags(
             "".join([choice(self.possible_flags)
                      for _ in range(randrange(1, self.flags_max + 1))]),
             conv
         )
+        if self.bonus:
+            flags += choice(["", "", "", "h", "hh", "l", "ll"])
 
     def _filter_flags(self, flags, conv):
         if "+" in flags and conv in "psxXcu":
@@ -179,7 +193,7 @@ class Generator:
     def _gen_string(self):
         if randrange(100) < 5:
             return "NULL"
-        return "".join([choice(CHARS) for _ in range(randrange(self.str_max_len))])
+        return "".join([choice(CHARS_UNICODE if self.bonus else CHARS) for _ in range(randrange(self.str_max_len))])
 
     def _write_header(self):
         self.output_file.write("#include \"header.h\"\n\nvoid generated_test(void)\n{\n\t")
