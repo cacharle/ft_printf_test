@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:45 by cacharle          #+#    #+#             */
-/*   Updated: 2020/09/29 11:40:34 by cacharle         ###   ########.fr       */
+/*   Updated: 2020/09/29 16:05:37 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int main(int argc, char **argv)
 	// added according to users
 	ASSERT_PRINTF("%.p", NULL);
 	ASSERT_PRINTF("%.d", 1);
+	ASSERT_PRINTF("%.d", 0);
 	ASSERT_PRINTF("%.u", 1);
 	ASSERT_PRINTF("%.s", "aasf");
 	ASSERT_PRINTF("%.p", NULL);
@@ -112,6 +113,11 @@ int main(int argc, char **argv)
 	ASSERT_PRINTF("%5.c", 'a');
 	ASSERT_PRINTF("%5.x", 0xee);
 	ASSERT_PRINTF("%5.X", 0xee);
+
+	ASSERT_PRINTF("-->|%-16.p|<-- ", NULL);
+	ASSERT_PRINTF("-->|%-16p|<-- ",  (void*)0x1900);
+	ASSERT_PRINTF("-->|%-16.p|<-- ", NULL);
+	ASSERT_PRINTF("-->|%-16p|<-- ",  (void*)0x1900);
 
 	/* ASSERT_PRINTF("%.0p", NULL); */
 	/* ASSERT_PRINTF("%.2p", NULL); */
