@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:45 by cacharle          #+#    #+#             */
-/*   Updated: 2020/04/02 20:46:17 by charles          ###   ########.fr       */
+/*   Updated: 2020/09/29 11:40:34 by cacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,30 @@ int main(int argc, char **argv)
 
 	// added according to users
 	ASSERT_PRINTF("%.p", NULL);
+	ASSERT_PRINTF("%.d", 1);
+	ASSERT_PRINTF("%.u", 1);
+	ASSERT_PRINTF("%.s", "aasf");
+	ASSERT_PRINTF("%.p", NULL);
+	ASSERT_PRINTF("%.c", 'a');
+	ASSERT_PRINTF("%.x", 0xee);
+	ASSERT_PRINTF("%.X", 0xee);
+	ASSERT_PRINTF("%1.p", NULL);
+	ASSERT_PRINTF("%1.d", 1);
+	ASSERT_PRINTF("%1.u", 1);
+	ASSERT_PRINTF("%1.s", "aasf");
+	ASSERT_PRINTF("%1.p", NULL);
+	ASSERT_PRINTF("%1.c", 'a');
+	ASSERT_PRINTF("%1.x", 0xee);
+	ASSERT_PRINTF("%1.X", 0xee);
+	ASSERT_PRINTF("%5.p", NULL);
+	ASSERT_PRINTF("%5.d", 1);
+	ASSERT_PRINTF("%5.u", 1);
+	ASSERT_PRINTF("%5.s", "aasf");
+	ASSERT_PRINTF("%5.p", NULL);
+	ASSERT_PRINTF("%5.c", 'a');
+	ASSERT_PRINTF("%5.x", 0xee);
+	ASSERT_PRINTF("%5.X", 0xee);
+
 	/* ASSERT_PRINTF("%.0p", NULL); */
 	/* ASSERT_PRINTF("%.2p", NULL); */
 	/* ASSERT_PRINTF("%.3p", NULL); */
@@ -97,6 +121,5 @@ int main(int argc, char **argv)
 	/* ASSERT_PRINTF("%.6p", NULL); */
 	/* ASSERT_PRINTF("%.7p", NULL); */
 
-	/* saved_test(); */
 	return 0;
 }
