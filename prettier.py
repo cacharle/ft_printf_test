@@ -6,7 +6,7 @@
 #    By: cacharle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 18:13:52 by cacharle          #+#    #+#              #
-#    Updated: 2020/04/02 19:55:29 by charles          ###   ########.fr        #
+#    Updated: 2021/01/31 03:08:45 by charles          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ def red(*strings):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser( prog="ft_printf test", description="A ~quicker tester for ft_printf")
+    parser = argparse.ArgumentParser(prog="ft_printf test", description="A ~quicker tester for ft_printf")
     parser.add_argument("-v", "--verbose",
                         help="increase verbosity", action="store_true")
     parser.add_argument("-q", "--quiet",

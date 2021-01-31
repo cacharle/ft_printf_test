@@ -6,7 +6,7 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:32 by cacharle          #+#    #+#             */
-/*   Updated: 2020/07/08 18:16:16 by ykoh             ###   ########.fr       */
+/*   Updated: 2021/01/31 03:03:38 by charles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@
 # include <stdbool.h>
 # include <signal.h>
 
-int pid;
-int pid2;
-bool signaled;
-static bool origin_signaled = false;
-static bool user_signaled = false;
-int origin_ret;
-int user_ret;
-char *origin_buf;
-char *user_buf;
+extern int  pid;
+extern int  pid2;
+extern bool signaled;
+extern bool origin_signaled ;
+extern bool user_signaled ;
+extern int  origin_ret;
+extern int  user_ret;
+extern char *origin_buf;
+extern char *user_buf;
 
-struct timeval timeout;
-fd_set input_set;
-int    timeout_pipe[2];
-int    fd_read_num;
+extern struct timeval timeout;
+extern fd_set input_set;
+extern int    timeout_pipe[2];
+extern int    fd_read_num;
 
 #define PIPE_WRITE 1
 #define PIPE_READ 0
@@ -61,7 +61,7 @@ void test_setup(void);
 void test_tear_down(void);
 char *read_stdout_buf(void);
 
-char fd_buf[10];
+extern char fd_buf[10];
 
 # define TEST_TIMEOUT(x) do {                                           \
 	if ((pid2 = fork()) == -1)                                          \

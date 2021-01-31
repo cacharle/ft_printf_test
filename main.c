@@ -6,13 +6,30 @@
 /*   By: cacharle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:13:45 by cacharle          #+#    #+#             */
-/*   Updated: 2020/09/29 16:05:37 by cacharle         ###   ########.fr       */
+/*   Updated: 2021/01/31 03:21:14 by charles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "header.h"
 #include "tests/tests.h"
+
+int pid;
+int pid2;
+bool signaled;
+bool origin_signaled = false;
+bool user_signaled = false;
+int origin_ret;
+int user_ret;
+char *origin_buf;
+char *user_buf;
+
+struct timeval timeout;
+fd_set input_set;
+int    timeout_pipe[2];
+int    fd_read_num;
+
+char fd_buf[10];
 
 int main(int argc, char **argv)
 {

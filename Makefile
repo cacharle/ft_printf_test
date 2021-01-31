@@ -6,14 +6,14 @@
 #    By: cacharle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 18:13:15 by cacharle          #+#    #+#              #
-#    Updated: 2020/04/02 20:50:47 by charles          ###   ########.fr        #
+#    Updated: 2021/01/31 03:25:48 by charles          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FT_PRINTF_PATH = ../ft_printf
 
 CC = gcc
-CCFLAGS = -Wall -Wextra -Wno-trigraphs
+CCFLAGS = -Wall -Wextra -Wno-trigraphs  # Adding -std=c99 causes crash
 LDFLAGS = -L$(FT_PRINTF_PATH) -lftprintf
 
 NAME = ft_printf_test

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -14,8 +16,7 @@ import os
 import sys
 import argparse
 import string
-import subprocess
-from random import randrange, choice, shuffle
+from random import randrange, choice
 
 
 INT_MIN = -2147483648
@@ -25,8 +26,12 @@ CHAR_MIN = -128
 CHAR_MAX = 127
 ULONG_INT_MAX = 18446744073709551616
 
-CHARS = (list(string.ascii_lowercase) + list(string.ascii_uppercase)
-        + list(string.punctuation) + list(string.digits))
+CHARS = (
+    list(string.ascii_lowercase) +
+    list(string.ascii_uppercase) +
+    list(string.punctuation) +
+    list(string.digits)
+)
 CHARS.remove("\"")
 CHARS.remove("\\")
 CHARS.extend([r"\t", r"\n", r"\r", r"\v", r"\f", "\\\\"])
@@ -61,7 +66,7 @@ class Generator:
         self.precision_wildcard_rate = 10
         self.precision_empty_rate = 2
         self.precision_point_rate = 4
-        self.possible_conv ="diuxXcsp%"
+        self.possible_conv = "diuxXcsp%"
         if options["bonus"]:
             self.possible_flags = "#0- +'"
         else:
@@ -169,7 +174,7 @@ class Generator:
         if p < self.precision_wildcard_rate:
             return ".*"
         p -= self.precision_wildcard_rate
-        if p  < self.precision_empty_rate:
+        if p < self.precision_empty_rate:
             return ""
         p -= self.precision_empty_rate
         if p < self.precision_point_rate:
@@ -186,6 +191,7 @@ class Generator:
 
     def _write_footer(self):
         self.output_file.write("}\n")
+
 
 if __name__ == "__main__":
     options = parse_args()

@@ -6,3 +6,4 @@ check_leaks
 *.dSYM
 result.log
 generated.c
+tags

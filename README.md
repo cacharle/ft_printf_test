@@ -1,8 +1,8 @@
 # ft_printf test
 
-Unit test for the ft_printf project of 42 school.
+Unit test for the ft\_printf project of 42 school.
 
-![example_screenshot](./screenshot.png)
+![screenshot](./screenshot.png)
 
 ## Usage
 
@@ -32,8 +32,8 @@ to `make fclean` in order to clean the previous .o files.
 
 It will generate random test according to the `-Wformat` flag of gcc.
 
-- `> python3 generate.py -n [number of tests]`: generate n test
-- `> python3 generate.py -h`: show all available options
+- `> ./generate -n [number of tests]`: generate n test
+- `> ./generate -h`: show all available options
 
 ### Bonus
 
