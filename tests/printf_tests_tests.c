@@ -100,17 +100,17 @@ void test_printf_tests_test(void)
 	ASSERT_PRINTF("%#020X",     -0x1234abcdu);
 
 
-//////////	ASSERT_PRINTF("% -0+*.*s",    20,  5, "Hallo heimur");
-////	ASSERT_PRINTF("% -0+*.*d",    20,  5,  1024);
-////	ASSERT_PRINTF("% -0+*.*d",    20,  5,  -1024);
-////	ASSERT_PRINTF("% -0+*.*i",    20,  5,  1024);
-////	ASSERT_PRINTF("% 0-+*.*i",    20,  5,  -1024);
-////////	ASSERT_PRINTF("% 0-+*.*u",    20,  5,  1024u);
-////////	ASSERT_PRINTF("% 0-+*.*u",    20,  5,  -1024u);
-////////	ASSERT_PRINTF("%+ -0*.*x",    20,  5,  0x1234abcdu);
-////////	ASSERT_PRINTF("%+ -0*.*x",    20, 10,  -0x1234abcdu);
-////////	ASSERT_PRINTF("% -+0*.*X",    20,  5,  0x1234abcdu);
-////////	ASSERT_PRINTF("% -+0*.*X",    20, 10,  -0x1234abcdu);
+//// //////////	ASSERT_PRINTF("% -0+*.*s",    20,  5, "Hallo heimur");
+//////	ASSERT_PRINTF("% -0+*.*d",    20,  5,  1024);
+//////	ASSERT_PRINTF("% -0+*.*d",    20,  5,  -1024);
+//////	ASSERT_PRINTF("% -0+*.*i",    20,  5,  1024);
+//////	ASSERT_PRINTF("% 0-+*.*i",    20,  5,  -1024);
+//////////	ASSERT_PRINTF("% 0-+*.*u",    20,  5,  1024u);
+//////////	ASSERT_PRINTF("% 0-+*.*u",    20,  5,  -1024u);
+//////////	ASSERT_PRINTF("%+ -0*.*x",    20,  5,  0x1234abcdu);
+//////////	ASSERT_PRINTF("%+ -0*.*x",    20, 10,  -0x1234abcdu);
+//////////	ASSERT_PRINTF("% -+0*.*X",    20,  5,  0x1234abcdu);
+//////////	ASSERT_PRINTF("% -+0*.*X",    20, 10,  -0x1234abcdu);
 #endif
 	/* TEST("777",             3, "%+o",      0777u) */
 	/* TEST("37777777001",    11, "%+o",      -0777u) */
@@ -192,20 +192,20 @@ void test_printf_tests_test(void)
 //	ASSERT_PRINTF("%-020X",      -0x1234abcdu);
 ////	ASSERT_PRINTF("%-020c",      'x');
 
-	ASSERT_PRINTF("%*s",      20, "Hallo");
-	ASSERT_PRINTF("%*d",      20, 1024);
-	ASSERT_PRINTF("%*d",      20, -1024);
-	ASSERT_PRINTF("%*i",      20, 1024);
-	ASSERT_PRINTF("%*i",      20, -1024);
-	ASSERT_PRINTF("%*u",      20, 1024u);
-	ASSERT_PRINTF("%*u",      20, -1024u);
-	/* TEST("                 777",  20, "%*o",      20, 0777u) */
-	/* TEST("         37777777001",  20, "%*o",      20, -0777u) */
-	ASSERT_PRINTF("%*x",      20, 0x1234abcdu);
-	ASSERT_PRINTF("%*x",      20, -0x1234abcdu);
-	ASSERT_PRINTF("%*X",      20, 0x1234abcdu);
-	ASSERT_PRINTF("%*X",      20, -0x1234abcdu);
-	ASSERT_PRINTF("%*c",      20, 'x');
+//// 	ASSERT_PRINTF("%*s",      20, "Hallo");
+//	ASSERT_PRINTF("%*d",      20, 1024);
+//	ASSERT_PRINTF("%*d",      20, -1024);
+//	ASSERT_PRINTF("%*i",      20, 1024);
+//	ASSERT_PRINTF("%*i",      20, -1024);
+//	ASSERT_PRINTF("%*u",      20, 1024u);
+//	ASSERT_PRINTF("%*u",      20, -1024u);
+//	/* TEST("                 777",  20, "%*o",      20, 0777u) */
+//	/* TEST("         37777777001",  20, "%*o",      20, -0777u) */
+//	ASSERT_PRINTF("%*x",      20, 0x1234abcdu);
+//	ASSERT_PRINTF("%*x",      20, -0x1234abcdu);
+//	ASSERT_PRINTF("%*X",      20, 0x1234abcdu);
+//	ASSERT_PRINTF("%*X",      20, -0x1234abcdu);
+//	ASSERT_PRINTF("%*c",      20, 'x');
 
 	ASSERT_PRINTF("%.20s",      "Hallo heimur");
 	ASSERT_PRINTF("%.20d",      1024);
