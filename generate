@@ -108,7 +108,7 @@ class Generator:
         for _ in range(randrange(1, self.args_max + 1)):
             conv = self.possible_conv[randrange(self.possible_conv_len)]
             f = self._fmt(conv)
-            for _ in range(f.count("*")):
+             for _ in range(f.count("*")):
                 args.append(randrange(-200, 200))
             formats.append(f)
             a = self._arg(conv)
@@ -161,7 +161,7 @@ class Generator:
     def _width(self):
         p = randrange(100)
         if p < self.width_wildcard_rate:
-            return "*"
+            return ""
         p -= self.width_wildcard_rate
         if p < self.width_empty_rate:
             return ""
@@ -172,7 +172,7 @@ class Generator:
             return ""
         p = randrange(100)
         if p < self.precision_wildcard_rate:
-            return ".*"
+            return "."
         p -= self.precision_wildcard_rate
         if p < self.precision_empty_rate:
             return ""

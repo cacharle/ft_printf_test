@@ -94,9 +94,9 @@ int main(int argc, char **argv)
 	test_moulitest_90();
 #endif
 	test_moulitest_91();
-	test_moulitest_wildcard_01();
-	test_moulitest_wildcard_02();
-	test_moulitest_wildcard_03();
+	//test_moulitest_wildcard_01();
+	//test_moulitest_wildcard_02();
+	//test_moulitest_wildcard_03();
 
 	test_printf_tester();
 

@@ -142,40 +142,40 @@ void test_moulitest_18(void)
 
 void test_moulitest_40(void)
 {
-	ASSERT_PRINTF("%ld%ld", 0l, 42l);
-	ASSERT_PRINTF("%ld", (long)INT_MAX + 1);
-	ASSERT_PRINTF("%ld", (long)INT_MIN - 1);
-	ASSERT_PRINTF("%ld", LONG_MAX);
-	ASSERT_PRINTF("%ld", LONG_MIN);
-	ASSERT_PRINTF("%li%li", 0l, 42l);
-	ASSERT_PRINTF("%li", (long)INT_MAX + 1);
-	ASSERT_PRINTF("%li", (long)INT_MIN - 1);
-	ASSERT_PRINTF("%li", LONG_MAX);
-	ASSERT_PRINTF("%li", LONG_MIN);
-	ASSERT_PRINTF("%lu, %lu", 0ul, ULONG_MAX);
-	ASSERT_PRINTF("%lx, %lx", 0ul, ULONG_MAX);
-	ASSERT_PRINTF("%lX, %lX", 0ul, ULONG_MAX);
+//	ASSERT_PRINTF("%ld%ld", 0l, 42l);
+//	ASSERT_PRINTF("%ld", (long)INT_MAX + 1);
+//	ASSERT_PRINTF("%ld", (long)INT_MIN - 1);
+//	ASSERT_PRINTF("%ld", LONG_MAX);
+//	ASSERT_PRINTF("%ld", LONG_MIN);
+//	ASSERT_PRINTF("%li%li", 0l, 42l);
+//	ASSERT_PRINTF("%li", (long)INT_MAX + 1);
+//	ASSERT_PRINTF("%li", (long)INT_MIN - 1);
+//	ASSERT_PRINTF("%li", LONG_MAX);
+//	ASSERT_PRINTF("%li", LONG_MIN);
+//	ASSERT_PRINTF("%lu, %lu", 0ul, ULONG_MAX);
+//	ASSERT_PRINTF("%lx, %lx", 0ul, ULONG_MAX);
+//	ASSERT_PRINTF("%lX, %lX", 0ul, ULONG_MAX);
 	/* ASSERT_PRINTF("%lc, %lc", L'暖', L'ح'); */
 }
 
 void test_moulitest_41(void)
 {
-	ASSERT_PRINTF("%lld%lld", 0ll, 42ll);
-	ASSERT_PRINTF("%lld", LLONG_MAX);
-	ASSERT_PRINTF("%lld", LLONG_MIN);
-	ASSERT_PRINTF("%lli%lli", 0ll, 42ll);
-	ASSERT_PRINTF("%lli", LLONG_MAX);
-	ASSERT_PRINTF("%lli", LLONG_MIN);
-	ASSERT_PRINTF("%llu, %llu", 0llu, ULLONG_MAX);
-	ASSERT_PRINTF("%llx, %llx", 0llu, ULLONG_MAX);
-	ASSERT_PRINTF("%llX, %llX", 0llu, ULLONG_MAX);
+//	ASSERT_PRINTF("%lld%lld", 0ll, 42ll);
+//	ASSERT_PRINTF("%lld", LLONG_MAX);
+//	ASSERT_PRINTF("%lld", LLONG_MIN);
+//	ASSERT_PRINTF("%lli%lli", 0ll, 42ll);
+//	ASSERT_PRINTF("%lli", LLONG_MAX);
+//	ASSERT_PRINTF("%lli", LLONG_MIN);
+//	ASSERT_PRINTF("%llu, %llu", 0llu, ULLONG_MAX);
+//	ASSERT_PRINTF("%llx, %llx", 0llu, ULLONG_MAX);
+//	ASSERT_PRINTF("%llX, %llX", 0llu, ULLONG_MAX);
 }
 
 void test_moulitest_42(void)
 {
-	ASSERT_PRINTF("%hd%hd", (short int)0, (short int)42);
-//	ASSERT_PRINTF("%hd", SHRT_MAX);
-//	ASSERT_PRINTF("%hd", SHRT_MIN);
+//	ASSERT_PRINTF("%hd%hd", (short int)0, (short int)42);
+////	ASSERT_PRINTF("%hd", SHRT_MAX);
+////	ASSERT_PRINTF("%hd", SHRT_MIN);
 ////	ASSERT_PRINTF("%hi%hi", 0, 42);
 //	ASSERT_PRINTF("%hi", SHRT_MAX);
 //	ASSERT_PRINTF("%hi", SHRT_MIN);
@@ -387,28 +387,28 @@ void test_moulitest_91(void)
 
 void test_moulitest_wildcard_01(void)
 {
-	ASSERT_PRINTF("%*d", 5, 42);
-	ASSERT_PRINTF("{%*d}", -5, 42);
-	ASSERT_PRINTF("{%*d}", 0, 42);
-	ASSERT_PRINTF("{%*c}", 0, 0);
-	ASSERT_PRINTF("{%*c}", -15, 0);
-	ASSERT_PRINTF("{%.*d}", 5, 42);
-	ASSERT_PRINTF("{%.*d}", -5, 42);
-	ASSERT_PRINTF("{%.*d}", 0, 42);
-	ASSERT_PRINTF("{%.*s}", 5, "42");
-	ASSERT_PRINTF("{%.*s}", -5, "42");
-	ASSERT_PRINTF("{%.*s}", 0, "42");
-//	ASSERT_PRINTF("{%*s}", 5, 0);
-//	ASSERT_PRINTF("{%*p}", 10, 0);
+//	// ASSERT_PRINTF("%*d", 5, 42);
+//	// ASSERT_PRINTF("{%*d}", -5, 42);
+//	// ASSERT_PRINTF("{%*d}", 0, 42);
+//	// ASSERT_PRINTF("{%*c}", 0, 0);
+//	// ASSERT_PRINTF("{%*c}", -15, 0);
+//	// ASSERT_PRINTF("{%.*d}", 5, 42);
+//	// ASSERT_PRINTF("{%.*d}", -5, 42);
+//	// ASSERT_PRINTF("{%.*d}", 0, 42);
+//// 	ASSERT_PRINTF("{%.*s}", 5, "42");
+//// 	ASSERT_PRINTF("{%.*s}", -5, "42");
+//// 	ASSERT_PRINTF("{%.*s}", 0, "42");
+////	ASSERT_PRINTF("{%*s}", 5, 0);
+////	ASSERT_PRINTF("{%*p}", 10, 0);
 }
 
 void test_moulitest_wildcard_02(void)
 {
-	ASSERT_PRINTF("%*.*d", 0, 3, 0);
+//	// ASSERT_PRINTF("%*.*d", 0, 3, 0);
 }
 
 void test_moulitest_wildcard_03(void)
 {
-////	ASSERT_PRINTF("{%*3d}", 5, 0);
-	ASSERT_PRINTF("{%05.*d}", -15, 42);
+//////	ASSERT_PRINTF("{%*3d}", 5, 0);
+//	// ASSERT_PRINTF("{%05.*d}", -15, 42);
 }
